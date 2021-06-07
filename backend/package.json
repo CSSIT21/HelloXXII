@@ -1,0 +1,19 @@
+{
+  "name": "helloxxii-backend",
+  "version": "1.0.0",
+  "description": "Backend service for HelloXXII",
+  "main": "src/main/index.js",
+  "scripts": {
+    "test": "nodemon src/main/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSSIT21/HelloXXII.git"
+  },
+  "author": "CS21",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CSSIT21/HelloXXII/issues"
+  },
+  "homepage": "https://github.com/CSSIT21/HelloXXII#readme"
+}

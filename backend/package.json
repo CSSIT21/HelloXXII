@@ -4,7 +4,8 @@
   "description": "Backend service for HelloXXII",
   "main": "src/main.js",
   "scripts": {
-    "test": "nodemon src/main.js"
+    "test": "nodemon src/main.js",
+    "fake": "node src/services/fakeService.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "async": "^3.2.0",
     "colors": "^1.4.0",
     "consola": "^2.15.3",
+    "faker": "^5.5.3",
     "fastify": "^3.17.0",
     "fastify-cookie": "^5.3.1",
     "fastify-cors": "^6.0.1",

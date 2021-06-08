@@ -2,9 +2,9 @@
   "name": "helloxxii-backend",
   "version": "1.0.0",
   "description": "Backend service for HelloXXII",
-  "main": "src/main/index.js",
+  "main": "src/main.js",
   "scripts": {
-    "test": "nodemon src/main/index.js"
+    "test": "nodemon src/main.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/CSSIT21/HelloXXII/issues"
   },
-  "homepage": "https://github.com/CSSIT21/HelloXXII#readme"
+  "homepage": "https://github.com/CSSIT21/HelloXXII#readme",
+  "dependencies": {
+    "async": "^3.2.0",
+    "fastify": "^3.17.0",
+    "fastify-cookie": "^5.3.1",
+    "fastify-cors": "^6.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "nanoid": "^3.1.23",
+    "thinky": "^2.3.9"
+  }
 }

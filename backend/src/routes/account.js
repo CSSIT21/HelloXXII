@@ -1,6 +1,20 @@
 module.exports = (fastify, opts, done) => {
+    const {
+        nanoid
+    } = require('nanoid');
+
+    const User = require('@model/user');
 
     fastify.get('/oauth', (req, res) => {
+
+        new User({
+            name: nanoid(64),
+            nickname: nanoid(64),
+            email: nanoid(64),
+            avatar: nanoid(64),
+            usertype: 1
+        }).save();
+
         res.send({
             "success": true,
             "oauth_url": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize"

@@ -1,14 +1,7 @@
-const fastify = require('fastify')({
-    logger: true
+const fastify = require('fastify')();
+
+require('./register')(fastify);
+
+fastify.listen(8081, (err, server) => {
+    require('consola').success(`Successfully started server ${server.green}`);
 });
-
-global.thinky = require('thinky')({
-
-});
-
-require('./plugins/bodyParser')(fastify);
-require('./plugins/cookieParser')(fastify);
-require('./plugins/cors')(fastify);
-require('./plugins/route-register')(fastify);
-
-fastify.listen(8081);

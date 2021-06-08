@@ -1,6 +1,6 @@
 # Database
 
-#### User
+## User
 - _id: ObjectID (user_id)
 - name: String
 - nickname: String
@@ -8,7 +8,46 @@
 - avatar: String
 - usertype: enum(1,2,3)
 
-#### Insane
+#### Usage
+> Import the model
+``` js
+const User = require('@model/user');
+```
+> Insert data to table 
+``` js
+const newUser = new User({
+    name: "<String>",
+    nickname: "<String>",
+    email: "<String>",
+    avatar: "<String>",
+    usertype: "<Number>"
+});
+newUser.save();
+```
+
+``` js
+// an alternating way
+const newUser = new User();
+newUser.name = "<String>";
+newUser.nickname = "<String>";
+newUser.email = "<String>";
+newUser.avatar = "<String>";
+newUser.usertype = "<Number>";
+newUser.save();
+```
+> Insert data to table using anonymous class
+``` js
+new User({
+    name: "<String>",
+    nickname: "<String>",
+    email: "<String>",
+    avatar: "<String>",
+    usertype: "<Number>"
+}).save();
+```
+
+
+## Insane
 - _id: ObjectID (user_id)
 - name: String (Peer name)
 - pair: String (Peer paring code)
@@ -16,7 +55,7 @@
 - hints: Array
 - co: ObjectID (co_id)
 
-#### Noob
+## Noob
 - _id: ObjectID (user_id)
 - paired: Boolean
 - pair: ObjectID (user_id of Insane)
@@ -24,7 +63,7 @@
 - attempt: Array
 - 
 
-#### Coline
+## Coline
 - _id: ObjectID (co_id)
 - name: String
 - line_url: String

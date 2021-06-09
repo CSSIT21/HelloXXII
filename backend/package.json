@@ -2,10 +2,9 @@
   "name": "helloxxii-backend",
   "version": "1.0.0",
   "description": "Backend service for HelloXXII",
-  "main": "src/main.js",
+  "main": "index.ts",
   "scripts": {
-    "test": "nodemon src/main.js",
-    "fake": "node src/services/fakeService.js"
+    "test": "nodemon index.ts"
   },
   "repository": {
     "type": "git",
@@ -18,6 +17,7 @@
   },
   "homepage": "https://github.com/CSSIT21/HelloXXII#readme",
   "dependencies": {
+    "@types/node": "^15.12.2",
     "async": "^3.2.0",
     "colors": "^1.4.0",
     "consola": "^2.15.3",
@@ -33,5 +33,10 @@
   "_moduleAliases": {
     "~": "./src",
     "@model": "./src/models"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
   }
 }

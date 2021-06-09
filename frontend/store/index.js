@@ -4,7 +4,7 @@ import {
   updateField
 } from 'vuex-map-fields';
 
-const store = new Vuex.Store({
+const store = () => new Vuex.Store({
   state: {
 
   },

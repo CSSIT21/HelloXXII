@@ -45,11 +45,11 @@ newUser.save();
 
 ```js
 new User({
-	**name**: "<String>",
-	**nickname**: "<String>",
-	**email**: "<String>",
-	**avatar**: "<String>",
-	**usertype**: "<Number>",
+	name: "<String>",
+	nickname: "<String>",
+	email: "<String>",
+	avatar: "<String>",
+	usertype: "<Number>",
 }).save();
 ```
 

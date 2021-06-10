@@ -1,6 +1,6 @@
-module.exports = thinky.createModel("Insane", {
-    quota: Number,
-    attempt: Array,
-    pair: String,
-    paired: Boolean
+module.exports = thinky.createModel('Insane', {
+	quota: Number,
+	attempt: Array,
+	pair: String,
+	paired: Boolean,
 });

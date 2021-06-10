@@ -1,7 +1,5 @@
-import {
-    nanoid
-} from 'nanoid';
+import { nanoid } from 'nanoid';
 
 module.exports = {
-    JWT_SECRET: nanoid(256)
-}
+	JWT_SECRET: nanoid(256),
+};

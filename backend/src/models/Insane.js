@@ -1,9 +1,7 @@
-const Insane = thinky.createModel("Insane", {
+module.exports = thinky.createModel("Insane", {
     name: String,
     pair: String,
     code: String,
     hints: Array,
     co: String
 });
-
-export default Insane;

@@ -32,7 +32,9 @@
   },
   "_moduleAliases": {
     "~": "./src",
-    "@model": "./src/models"
+    "@model": "./src/models",
+    "@app": "./src/app",
+    "@utils": "./src/utils"
   },
   "devDependencies": {
     "nodemon": "^2.0.7",

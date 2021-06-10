@@ -1,4 +1,3 @@
-
 const Insane = thinky.createModel("Insane", {
     name: String,
     pair: String,

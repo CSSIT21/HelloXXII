@@ -1,6 +1,4 @@
-import { FastifyInstance } from 'fastify';
-
-export default (app: FastifyInstance, opts, done) => {
+module.exports = (app, opts, done) => {
 
     app.get('/oauth', (req, res) => {
         res.send({
@@ -10,7 +8,6 @@ export default (app: FastifyInstance, opts, done) => {
     });
 
     app.get('/oauth-callback', (req, res) => {
-
         res.send({
             "success": true,
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJDUzIyQ09ERUxJTkUiLCJuYW1lIjoiQmh1bWphdGUgU3VkcHJhc2VydCIsImVtYWlsIjoiYmh1bWphdGUuc0BtYWlsLmttdXR0LmFjLnRoIiwiaWF0IjoxNTE2MjM5MDIyfQ.x9Txjd9ePFRbwdXeQSvcGMgYdRW_sIGk1fkPsu1JOoE",
@@ -18,9 +15,6 @@ export default (app: FastifyInstance, opts, done) => {
         });
     });
 
-    app.get('/', (req, res) => {
-        res.send("Hello World");
-    });
 
     done()
 }

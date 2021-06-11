@@ -71,7 +71,7 @@ jobs:
 
       - name: Upload artifacts to server
         run: |
-          lftp -e "set sftp:auto-confirm yes; open $REMOTE_SFTP_LOGIN; mirror -X .* -X .*/ --reverse --delete ./backend-build-artifact /mnt/others/helloxxii; mput -e -O /mnt/spring ./backend-build-artifact/helloxxii-bundled.js; bye"
+          lftp -e "set sftp:auto-confirm yes; open $REMOTE_SFTP_LOGIN; mirror -X .* -X .*/ --reverse --delete ./frontend-build-artifact /mnt/others/helloxxii; mput -e -O /mnt/spring ./backend-build-artifact/helloxxii-bundled.js; bye"
 
       - name: Restart Node runtime at server
         run: |

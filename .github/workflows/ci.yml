@@ -57,6 +57,8 @@ jobs:
     needs: [frontend-build, backend-build]
     env:
       REMOTE_SFTP_LOGIN: ${{ secrets.REMOTE_SFTP_LOGIN }}
+      REMOTE_SSH_ARGS: ${{ secrets.REMOTE_SSH_ARGS }}
+      REMOTE_SSH_PASSWORD: ${{ secrets.REMOTE_SSH_PASSWORD }}
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v2

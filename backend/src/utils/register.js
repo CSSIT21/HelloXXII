@@ -1,7 +1,7 @@
 const glob = require('glob');
 const path = require('path');
 const consola = require('consola');
-const colors = require('colors');
+require('colors');
 
 module.exports = {
 	registerPlugins: (fastify, dir = '../plugins/**.js') => {

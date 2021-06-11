@@ -4,10 +4,11 @@ on:
   push:
     branches:
       - main
+      - ci-dev
 
 jobs:
-  react-build:
-    name: Build React.js Frontend
+  frontend-build:
+    name: Build Nuxt Frontend
     runs-on: ubuntu-latest
     timeout-minutes: 5
     container: node:lts
@@ -15,24 +16,45 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Compile React.js production build
+      - name: Generate Nuxt static production build
         run: |
-          cd ./react
+          cd ./frontend
+          npm i
+          npm run generate
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: frontend-build-artifact
+          path: ./frontend/dist
+
+  backend-build:
+    name: Build Node Backend
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    container: node:lts
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Generate webpack bundled production build
+        run: |
+          cd ./backend
           npm i
           npm run build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: react-build-artifact
-          path: ./react/build
+          name: backend-build-artifact
+          path: ./backend/dist
 
   upload:
     name: Preview Server Uploading
     runs-on: ubuntu-latest
     timeout-minutes: 2
     container: alpine
-    needs: [react-build]
+    needs: [frontend-build, backend-build]
     env:
       REMOTE_SFTP_LOGIN: ${{ secrets.REMOTE_SFTP_LOGIN }}
     steps:
@@ -47,4 +69,8 @@ jobs:
 
       - name: Upload artifacts to server
         run: |
-          lftp -e "set sftp:auto-confirm yes; open $REMOTE_SFTP_LOGIN; mirror -X .* -X .*/ --reverse --delete ./react-build-artifact /mnt/nxkmutt; bye"
+          lftp -e "set sftp:auto-confirm yes; open $REMOTE_SFTP_LOGIN; mirror -X .* -X .*/ --reverse --delete ./backend-build-artifact /mnt/others/helloxxii; mput -e -O /mnt/spring ./backend-build-artifact/*-SNAPSHOT.jar; bye"
+
+      - name: Restart Spring Boot Runtime at server
+        run: |
+          sshpass -p $REMOTE_SSH_PASSWORD ssh $REMOTE_SSH_ARGS -o StrictHostKeyChecking=no "(kill -9 \$(cat /mnt/spring/ChouxcreamPOS.pid) || true) && while kill -0 \$(cat /mnt/spring/ChouxcreamPOS.pid); do sleep 1; done && nohup /mnt/spring/start.sh > /dev/null"

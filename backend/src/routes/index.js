@@ -1,4 +1,4 @@
-const User = require('@model/user');
+const User = require('@models/User');
 
 module.exports = (app, opts, done) => {
 	

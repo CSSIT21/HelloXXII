@@ -1,4 +1,7 @@
-require('module-alias/register');
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+	require('module-alias/register');
+}
+
 const fastify = require('fastify');
 const consola = require('consola');
 const { registerPlugins, registerRoutes } = require('@utils/register');

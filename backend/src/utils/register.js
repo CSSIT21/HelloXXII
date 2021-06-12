@@ -20,6 +20,8 @@ module.exports = {
 		[
 			'index',
 			'account-oauth',
+			'account-oauth-callback',
+			'account-oauth-redirect'
 		].forEach((file) => {
 			const module = require(`../routes/${file}.js`);
 			fastify.register(module, { prefix: '/' });

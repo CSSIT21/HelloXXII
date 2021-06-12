@@ -1,5 +1,6 @@
 const qs = require('qs')
 const axios = require('axios')
+const isDev = require('@utils/isDev')
 
 module.exports = (app, opts, done) => {
 	
@@ -11,7 +12,7 @@ module.exports = (app, opts, done) => {
 			const getToken = await axios.post("https://login.microsoftonline.com/6f4432dc-20d2-441d-b1db-ac3380ba633d/oauth2/v2.0/token",qs.stringify({
 				grant_type : 'authorization_code',
 				code : req.query.code,
-				redirect_uri : 'http://localhost:8081/account/oauth-callback',
+				redirect_uri : (isDev ? 'http://localhost:8081' : 'https://helloxxii-api.cscc.cf') + '/account/oauth-callback',
 			}))
 			console.log(getToken.data);
 			axios.defaults.headers = {

@@ -19,18 +19,10 @@ module.exports = {
 	registerRoutes: (fastify) => {
 		[
 			'index',
-			'account',
+			'account-oauth',
 		].forEach((file) => {
 			const module = require(`../routes/${file}.js`);
-			
-			if (file === 'index') {
-				fastify.register(module, { prefix: '/' });
-			} else {
-				fastify.register(module, {
-					prefix: '/' + file,
-				});
-			}
-			
+			fastify.register(module, { prefix: '/' });
 			consola.success(
 				`Added ${'route'.cyan} ${('/' + (file === 'index' ? '' : file)).green}`,
 			);

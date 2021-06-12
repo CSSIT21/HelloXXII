@@ -13,6 +13,6 @@ const app = fastify();
 registerPlugins(app);
 registerRoutes(app);
 
-app.listen(8081).then(() => consola.success(`Successfully initialized.`));
+app.listen(8081, '0.0.0.0').then(() => consola.success(`Successfully initialized.`));
 
 module.exports = app;

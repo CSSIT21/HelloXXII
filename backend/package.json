@@ -1,42 +1,50 @@
 {
-  "name": "helloxxii-backend",
-  "version": "1.0.0",
-  "description": "Backend service for HelloXXII",
-  "main": "index.ts",
-  "scripts": {
-    "test": "nodemon index.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CSSIT21/HelloXXII.git"
-  },
-  "author": "CS21",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/CSSIT21/HelloXXII/issues"
-  },
-  "homepage": "https://github.com/CSSIT21/HelloXXII#readme",
-  "dependencies": {
-    "@types/node": "^15.12.2",
-    "async": "^3.2.0",
-    "colors": "^1.4.0",
-    "consola": "^2.15.3",
-    "faker": "^5.5.3",
-    "fastify": "^3.17.0",
-    "fastify-cookie": "^5.3.1",
-    "fastify-cors": "^6.0.1",
-    "jsonwebtoken": "^8.5.1",
-    "module-alias": "^2.2.2",
-    "nanoid": "^3.1.23",
-    "thinky": "^2.3.9"
-  },
-  "_moduleAliases": {
-    "~": "./src",
-    "@model": "./src/models"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.2"
-  }
+	"name": "helloxxii-backend",
+	"version": "1.0.0",
+	"description": "Backend service for HelloXXII",
+	"main": "src/entrypoint.js",
+	"private": true,
+	"scripts": {
+		"test": "nodemon src/entrypoint.js",
+		"start": "node src/entrypoint.js",
+		"build": "webpack --config webpack.config.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CSSIT21/HelloXXII.git"
+	},
+	"author": "CS21",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/CSSIT21/HelloXXII/issues"
+	},
+	"homepage": "https://github.com/CSSIT21/HelloXXII#readme",
+	"dependencies": {
+		"@types/node": "^15.12.2",
+		"async": "^3.2.0",
+		"axios": "^0.21.1",
+		"colors": "^1.4.0",
+		"consola": "^2.15.3",
+		"faker": "^5.5.3",
+		"fastify": "^3.17.0",
+		"fastify-cookie": "^5.3.1",
+		"fastify-cors": "^6.0.1",
+		"glob": "^7.1.7",
+		"jsonwebtoken": "^8.5.1",
+		"nanoid": "^3.1.23",
+		"qs": "^6.10.1",
+		"thinky": "^2.3.9"
+	},
+	"devDependencies": {
+		"module-alias": "^2.2.2",
+		"nodemon": "^2.0.7",
+		"webpack": "^5.38.1",
+		"webpack-cli": "^4.7.2"
+	},
+	"_moduleAliases": {
+		"~": "./",
+		"@app": "./src/app",
+		"@models": "./src/models",
+		"@utils": "./src/utils"
+	}
 }

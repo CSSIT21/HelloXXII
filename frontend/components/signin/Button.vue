@@ -30,19 +30,30 @@ export default {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 
   color: #717171;
-  font-size: 15px;
-
   cursor: pointer;
   transition: all 0.1s;
 }
 
 .signIn-btn span {
   margin-left: 3%;
+  font-size: 15px;
   letter-spacing: 1px;
 }
 
 .signIn-btn:hover {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.17);
   background-color: #ffeaea;
+}
+
+@media only screen and (max-width: 767px) {
+  .signIn-btn {
+    width: 220px;
+    height: 38px;
+    border-radius: 15px;
+  }
+
+  .signIn-btn span {
+    font-size: 12px;
+  }
 }
 </style>

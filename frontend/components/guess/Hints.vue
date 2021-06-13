@@ -53,4 +53,15 @@ export default {
   cursor: pointer;
   transition: all 0.05s;
 }
+
+@media only screen and (max-width: 767px) {
+  .hint-btn h6 {
+    font-size: 10px;
+  }
+
+  .hint-btn button {
+    width: 54px;
+    height: 54px;
+  }
+}
 </style>

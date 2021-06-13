@@ -1,18 +1,36 @@
 <template>
   <div class="hint-btn">
     <h6>Your Hint</h6>
-    <button><IconsKey color="#ffffff" /></button>
+    <button class="click-action" @click="showHints">
+      <IconsKey color="#ffffff" />
+    </button>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({
+    hints: "Love buffet, Want to eat chocolate, Work from bed",
+    quota_used: 3,
+  }),
+  methods: {
+    showHints() {
+      this.$swal({
+        title: `Your ${this.quota_used} Hint`,
+        text: this.hints,
+        icon: "question",
+        confirmButtonColor: "#4f8ae3",
+        width: 450,
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>
 .hint-btn {
   position: absolute;
-  right: 15%;
+  right: 12%;
   bottom: 15%;
   text-align: center;
 }
@@ -24,12 +42,15 @@ export default {};
 }
 
 .hint-btn button {
-  width: 66px;
-  height: 66px;
+  width: 62px;
+  height: 62px;
   margin: 5px;
 
   border: none;
   border-radius: 50%;
   background: #ff6584;
+
+  cursor: pointer;
+  transition: all 0.05s;
 }
 </style>

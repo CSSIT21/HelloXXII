@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <Nuxt />
-    <BaseAccount />
+  <div class="center-content">
+    <h1>CONGRAT!</h1>
   </div>
 </template>
 

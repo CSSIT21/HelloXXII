@@ -12,7 +12,19 @@ export default {
   }),
   methods: {
     logout() {
-      console.log("Log out !");
+      this.$swal({
+        text: "Want to sign out?",
+        icon: "question",
+        confirmButtonText: "Confirm",
+        showCancelButton: true,
+        confirmButtonColor: "#4f8ae3",
+        cancelButtonColor: "#d1d1cf",
+        width: 400,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log("Sign out success!");
+        }
+      });
     },
   },
 };

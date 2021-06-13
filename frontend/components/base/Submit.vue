@@ -20,4 +20,12 @@ export default {};
   cursor: pointer;
   transition: all 0.05s;
 }
+
+@media only screen and (max-width: 767px) {
+  .box {
+    width: 130px;
+    height: 33px;
+    border-radius: 15px;
+  }
+}
 </style>

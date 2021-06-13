@@ -33,4 +33,15 @@ export default {
   font-size: 12.5px;
   color: #fcb9b4;
 }
+
+@media only screen and (max-width: 767px) {
+  .team img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .team h6 {
+    font-size: 10px;
+  }
+}
 </style>

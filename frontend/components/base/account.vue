@@ -54,4 +54,10 @@ export default {
 .account-btn:active {
   transform: scale(0.9);
 }
+
+@media only screen and (max-width: 767px) {
+  .account-btn span {
+    font-size: 12px;
+  }
+}
 </style>

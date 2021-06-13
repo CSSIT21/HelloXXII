@@ -21,12 +21,12 @@ module.exports = {
 			'index',
 			'account-oauth',
 			'account-oauth-callback',
-			'account-oauth-redirect'
+			'account-oauth-redirect',
 		].forEach((file) => {
 			const module = require(`../routes/${file}.js`);
 			fastify.register(module, { prefix: '/' });
 			consola.success(
-				`Added ${'route'.cyan} ${('/' + (file === 'index' ? '' : file)).green}`,
+				`Added ${'route'.cyan} ${(file === 'index' ? '' : file).green}`,
 			);
 		});
 	},

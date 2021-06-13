@@ -49,10 +49,13 @@
     </codeStyleSettings>
     <codeStyleSettings language="JavaScript">
       <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
-      <option name="ALIGN_MULTILINE_CHAINED_METHODS" value="true" />
       <option name="CALL_PARAMETERS_WRAP" value="5" />
+      <option name="CALL_PARAMETERS_LPAREN_ON_NEXT_LINE" value="true" />
       <option name="METHOD_PARAMETERS_WRAP" value="5" />
       <option name="METHOD_CALL_CHAIN_WRAP" value="5" />
+      <option name="ARRAY_INITIALIZER_WRAP" value="5" />
+      <option name="ARRAY_INITIALIZER_LBRACE_ON_NEXT_LINE" value="true" />
+      <option name="ARRAY_INITIALIZER_RBRACE_ON_NEXT_LINE" value="true" />
       <option name="IF_BRACE_FORCE" value="3" />
       <indentOptions>
         <option name="USE_TAB_CHARACTER" value="true" />

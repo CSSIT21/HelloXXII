@@ -19,15 +19,23 @@ export default {
     submit() {
       if (!this.pairing_code) return;
 
-      if (this.correct_code === this.pairing_code)
-        this.$router.push({ name: "guess-peer-mentor" });
-      else {
+      if (this.correct_code === this.pairing_code) {
+        this.$swal({
+          title: "Paired",
+          text: "Now you are paired with your peer mentor",
+          icon: "success",
+          showConfirmButton: false,
+          width: 450,
+          timer: 2200,
+        }).then(() => this.$router.push({ name: "guess-peer-mentor" }));
+      } else {
         this.$swal({
           title: "Sorry...",
           text: this.error_desc,
-          icon: "error",
-          confirmButtonColor: "#4f8ae3",
+          icon: "warning",
+          confirmButtonColor: "#facea8",
           width: 450,
+          onOpen: () => {},
         });
       }
     },

@@ -11,7 +11,7 @@
 <script>
 export default {
   data: () => ({
-    role: "fox",
+    role: "chicken",
   }),
 };
 </script>
@@ -19,7 +19,7 @@ export default {
 <style scoped>
 .team {
   text-align: center;
-  margin: 30px;
+  margin-top: 30px;
 }
 
 .team img {

@@ -9,7 +9,6 @@
 export default {
   methods: {
     signIn() {
-      console.log("sign in");
       this.$router.push({ name: "pair-peer-mentor" });
     },
   },

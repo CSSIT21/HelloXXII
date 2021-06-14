@@ -12,7 +12,7 @@
 export default {
   data: () => ({
     commit_code: "",
-    success: false,
+    success: true,
     error: 4007,
     error_desc: "Mismatch peer mentor. Checking result goes wrong.",
     quota_remaining: 2,
@@ -22,7 +22,14 @@ export default {
       if (!this.commit_code) return;
 
       if (this.success) {
-        this.$router.push({ name: "congrat" });
+        this.$swal({
+          title: "Paired",
+          text: "Now you are paired with your peer mentor",
+          icon: "success",
+          showConfirmButton: false,
+          width: 450,
+          timer: 2200,
+        }).then(() => this.$router.push({ name: "congrat" }));
       } else {
         if (this.error === 4007) {
           this.$swal({
@@ -30,15 +37,16 @@ export default {
             text: this.error_desc,
             footer: `You have ${this.quota_remaining} chance left.`,
             icon: "error",
-            confirmButtonColor: "#4f8ae3",
+            confirmButtonColor: "#f27474",
             width: 450,
           });
         } else {
           this.$swal({
             title: "Sorry...",
             text: this.error_desc,
-            icon: "error",
-            confirmButtonColor: "#4f8ae3",
+            icon: "warning",
+            confirmButtonColor: "#facea8",
+            focusConfirm: false,
             width: 450,
           });
         }

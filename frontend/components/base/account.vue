@@ -32,9 +32,13 @@ export default {
 
 <style scoped>
 .account-btn {
+  position: absolute;
+  bottom: 2.5%;
+  left: 50%;
+  transform: translateX(-50%);
+
   display: flex;
   align-items: center;
-  margin: 0 auto;
   padding: 5px 12px;
 
   background: none;
@@ -52,7 +56,7 @@ export default {
 }
 
 .account-btn:active {
-  transform: scale(0.9);
+  transform: scale(0.8) translateX(-50%);
 }
 
 @media only screen and (max-width: 767px) {

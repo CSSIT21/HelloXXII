@@ -1,0 +1,7 @@
+.swal2-icon .swal2-icon-content {
+  letter-spacing: 0;
+}
+
+.swal2-confirm.swal2-styled:focus {
+  box-shadow: none;
+}

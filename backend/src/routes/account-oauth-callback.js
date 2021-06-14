@@ -99,7 +99,6 @@ module.exports = (app, opts, done) => {
 					});
 				} else {
 					// In case of user already been in the system.
-					const user = await User.filter({ email: graph.mail }).run();
 					const token = jwt.sign({
 						id: user[0].id,
 						name: user[0].name,

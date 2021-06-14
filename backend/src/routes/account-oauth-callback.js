@@ -5,8 +5,7 @@ const isDev = require('@utils/isDev');
 const { axiosCatch } = require('@utils/catcher');
 const User = require('@models/User');
 const Photo = require('@models/Photo');
-const path = require('path');
-const fs = require('fs');
+const jwt = require('jsonwebtoken');
 
 const admin = [
 	'bhumjate.s',
@@ -60,7 +59,7 @@ module.exports = (app, opts, done) => {
 				// Retrieve binary data of profile photo
 				const [photo, mime] = await new Promise((resolve) => {
 					axios.get(
-						'https://graph.microsoft.com/v1.0/me/photo/$value',
+						'https://graph.microsoft.com/beta/me/photo/$value',
 						{
 							responseType: 'arraybuffer',
 							headers: {
@@ -88,16 +87,28 @@ module.exports = (app, opts, done) => {
 						photo: thinky.r.binary(photo),
 					});
 					
+					const token = jwt.sign({
+						id: document.id,
+						name: graph.displayName,
+						usertype: 1,
+					}, 'HelloXXII-By-CS21-To-CS22-2021-Monterey-2zr!6@$WY9tV', { expiresIn: '3d' });
+					
 					send({
 						success: true,
+						token: token,
 					});
 				} else {
 					// In case of user already been in the system.
-					
-					// TODO: Add functional on second login user.
+					const user = await User.filter({ email: graph.mail }).run();
+					const token = jwt.sign({
+						id: user[0].id,
+						name: user[0].name,
+						usertype: user[0].usertype,
+					}, 'HelloXXII-By-CS21-To-CS22-2021-Monterey-2zr!6@$WY9tV', { expiresIn: '3d' });
 					
 					send({
-						success: false,
+						success: true,
+						token: token,
 					});
 				}
 				

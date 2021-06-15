@@ -1,12 +1,12 @@
 const thinky = require('thinky');
-const isDev = require('@utils/isDev');
+const { dev } = require('@utils/environment');
 
 module.exports = {
 	getThinkyInstance: () =>
 		thinky({
 			host: '10.5.55.11',
 			log: false,
-			db: isDev ? 'helloxxii-beta' : 'helloxxii',
+			db: dev ? 'helloxxii-beta' : 'helloxxii',
 			validate: 'oncreate',
 		}),
 };

@@ -2,7 +2,7 @@ const axios = require('axios');
 const jwt = require('jsonwebtoken');
 const qs = require('qs');
 const jwtContrants = require('../constants/jwt.json');
-const isDev = require('@utils/isDev');
+const { dev, url } = require('@utils/environment');
 const { axiosCatch } = require('@utils/catcher');
 const User = require('@models/User');
 const Photo = require('@models/Photo');
@@ -28,7 +28,7 @@ module.exports = (app, opts, done) => {
 						{
 							grant_type: 'authorization_code',
 							code: req.query.code,
-							redirect_uri: (isDev ? 'http://localhost:8081' : 'https://helloxxii-api.cscc.cf') + '/account/oauth-callback',
+							redirect_uri: url + '/account/oauth-callback',
 						}),
 					{
 						headers: {
@@ -108,17 +108,38 @@ module.exports = (app, opts, done) => {
 					jwtContrants.secret,
 					jwtContrants.options);
 				
-				res.send({
-					success: true,
-					token: token,
-				});
+				res.cookie(
+					'token',
+					token,
+					{
+						domain: dev ? 'localhost' : 'helloxxii-api.cscc.cf',
+						path: '/',
+					});
 			} else {
 				// * Update profile photo for existing user from retrieved Graph profile photo.
-				const record = await Photo.get(user[0].id).run();
-				await record.merge({
-					mime: mime,
-					photo: thinky.r.binary(photo),
-				}).save();
+				new Promise((resolve, reject) => {
+					Photo
+						.get(user[0].id)
+						.run()
+						.then((record) => {
+							record.merge({
+									mime: mime,
+									photo: thinky.r.binary(photo),
+								})
+								.save()
+								.then(() => resolve())
+								.catch((e) => reject(e));
+						})
+						.catch(() => {
+							Photo.save({
+									id: user[0].id,
+									mime: mime,
+									photo: thinky.r.binary(photo),
+								})
+								.then(() => resolve())
+								.catch((e) => reject(e));
+						});
+				});
 				
 				// * Sign JWT from existing database record.
 				const token = jwt.sign(
@@ -130,23 +151,40 @@ module.exports = (app, opts, done) => {
 					jwtContrants.secret,
 					jwtContrants.options);
 				
-				res.send({
-					success: true,
-					token: token,
-				});
+				res.cookie(
+					'token',
+					token,
+					{
+						domain: dev ? 'localhost' : 'helloxxii-api.cscc.cf',
+						path: '/',
+					});
 			}
+			
+			return res.redirect(dev ? 'http://localhost:8080/oauth-callback' : 'https://helloxxii.cscc.cf/oauth-callback');
 		} catch (e) {
-			if (e instanceof Error) {
-				res.send({
+			if (e instanceof thinky.r.Error.ReqlServerError) {
+				return {
+					success: false,
+					error: 3011,
+					error_desc: e.name + ' ' + e.message,
+				};
+			} else if (e instanceof thinky.Errors.ValidationError) {
+				return {
+					success: false,
+					error: 3012,
+					error_desc: e.name + ' ' + e.message,
+				};
+			} else if (e instanceof Error) {
+				return {
 					success: false,
 					error: 3001,
-					error_desc: e.message,
-				});
+					error_desc: e.name + ' ' + e.message,
+				};
 			} else {
-				res.send({
+				return {
 					success: false,
 					...e,
-				});
+				};
 			}
 		}
 	});

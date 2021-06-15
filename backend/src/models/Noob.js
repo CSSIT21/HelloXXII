@@ -5,6 +5,6 @@ module.exports = thinky.createModel('noobs', {
 	paired: Boolean,
 }, {
 	enforce_missing: true,
-	enforce_extra: 'remove',
+	enforce_extra: 'none',
 	enforce_type: 'strict',
 });

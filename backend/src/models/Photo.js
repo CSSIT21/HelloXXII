@@ -1,4 +1,4 @@
-module.exports = thinky.createModel('photos', {
+const Photo = thinky.createModel('photos', {
 	id: thinky.type.string().uuid(4),
 	mime: thinky.type.string(),
 	photo: thinky.type.buffer(),
@@ -7,3 +7,5 @@ module.exports = thinky.createModel('photos', {
 	enforce_extra: 'remove',
 	enforce_type: 'strict',
 });
+
+module.exports = Photo;

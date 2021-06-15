@@ -6,6 +6,6 @@ module.exports = thinky.createModel('insanes', {
 	co: String,
 }, {
 	enforce_missing: true,
-	enforce_extra: 'remove',
+	enforce_extra: 'none',
 	enforce_type: 'strict',
 });

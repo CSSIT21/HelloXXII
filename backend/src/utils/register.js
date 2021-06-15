@@ -27,7 +27,7 @@ module.exports = {
 			const module = require(`../routes/${file}.js`);
 			fastify.register(module, { prefix: '/' });
 			consola.success(
-				`Added ${'route'.cyan} ${(file === 'index' ? '' : file).green}`,
+				`Added ${'route'.cyan} ${file.green}`,
 			);
 		});
 	},

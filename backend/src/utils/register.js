@@ -1,4 +1,3 @@
-const glob = require('glob');
 const path = require('path');
 const consola = require('consola');
 require('colors');
@@ -23,6 +22,8 @@ module.exports = {
 			'account-oauth-callback',
 			'account-oauth-redirect',
 			'account-photo',
+			'admin-setup',
+			'admin-op',
 		].forEach((file) => {
 			const module = require(`../routes/${file}.js`);
 			fastify.register(module, { prefix: '/' });

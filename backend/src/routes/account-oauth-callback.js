@@ -3,19 +3,12 @@ const jwt = require('jsonwebtoken');
 const qs = require('qs');
 const jwtContrants = require('../constants/jwt.json');
 const { dev, url } = require('@utils/environment');
-const { axiosCatch } = require('@utils/catcher');
+const { genericError, axiosError } = require('@utils/response');
 const User = require('@models/User');
 const Photo = require('@models/Photo');
-
-const admin = [
-	'bhumjate.s',
-	'apisit.mixko',
-	'athippat.athip',
-	'sirawit.cssit',
-	'monthara.k',
-	'kasemtan.kmutt',
-	'patiphon.k',
-];
+const Insane = require('@models/Insane');
+const Noob = require('@models/Noob');
+const Coline = require('@models/Coline');
 
 module.exports = (app, opts, done) => {
 	app.get('/account/oauth-callback', async (req, res) => {
@@ -47,7 +40,7 @@ module.exports = (app, opts, done) => {
 								error_desc: 'Invalid Microsoft OAuth authorization code.',
 							});
 						}
-						reject(axiosCatch(e));
+						reject(axiosError(e));
 					});
 			});
 			
@@ -61,7 +54,7 @@ module.exports = (app, opts, done) => {
 						},
 					})
 					.then((r) => resolve(r.data))
-					.catch((e) => reject(axiosCatch(e)));
+					.catch((e) => reject(axiosError(e)));
 			});
 			
 			// * Retrieve Microsoft Graph profile photo (binary payload as arraybuffer `photo`, content type as string `mime`).
@@ -75,7 +68,7 @@ module.exports = (app, opts, done) => {
 						},
 					})
 					.then((r) => resolve([r.data, r.headers['content-type']]))
-					.catch((e) => reject(axiosCatch(e)));
+					.catch((e) => reject(axiosError(e)));
 			});
 			
 			// * Fetch saved user information from database (identify by `graph.mail`).
@@ -83,12 +76,19 @@ module.exports = (app, opts, done) => {
 			
 			// * Check whether user is already exist in database or not.
 			if (user.length === 0) {
-				// * Create new User record, and fetch back generated id as `document.id`.
+				// * Check whether user is insane candidate or not. If be a candidate, fetch back an insane document as `insane`.
+				const insane = await new Promise((resolve) => {
+					Insane.get(graph.mail).run()
+						.then((insane) => resolve(insane))
+						.catch(() => resolve(false));
+				});
+				
+				// * Create new User record, and fetch back document which store generated id as `document.id`.
 				const document = await User.save({
 					name: graph.displayName,
 					nickname: graph.displayName.split(' ')[0],
 					email: graph.mail,
-					usertype: 1,
+					usertype: insane === false ? 1 : 2,
 				});
 				
 				// * Save Photo record from retrieved Graph profile photo, which store `id` same as recently created User record.
@@ -97,6 +97,20 @@ module.exports = (app, opts, done) => {
 					mime: mime,
 					photo: thinky.r.binary(photo),
 				});
+				
+				if (insane === false) {
+					// Case of user is noob, not exist in insane candidate. Then, just create regular record.
+					await Noob.save({
+						id: document.id,
+						pair: null,
+					});
+				} else {
+					await Insane.save({
+						...insane,
+						id: document.id,
+					});
+					await insane.delete();
+				}
 				
 				// * Sign JWT
 				const token = jwt.sign(
@@ -117,29 +131,12 @@ module.exports = (app, opts, done) => {
 					});
 			} else {
 				// * Update profile photo for existing user from retrieved Graph profile photo.
-				new Promise((resolve, reject) => {
-					Photo
-						.get(user[0].id)
-						.run()
-						.then((record) => {
-							record.merge({
-									mime: mime,
-									photo: thinky.r.binary(photo),
-								})
-								.save()
-								.then(() => resolve())
-								.catch((e) => reject(e));
-						})
-						.catch(() => {
-							Photo.save({
-									id: user[0].id,
-									mime: mime,
-									photo: thinky.r.binary(photo),
-								})
-								.then(() => resolve())
-								.catch((e) => reject(e));
-						});
-				});
+				const record = await Photo.get(user[0].id).run();
+				await record.merge({
+						mime: mime,
+						photo: thinky.r.binary(photo),
+					})
+					.save();
 				
 				// * Sign JWT from existing database record.
 				const token = jwt.sign(
@@ -162,30 +159,7 @@ module.exports = (app, opts, done) => {
 			
 			return res.redirect(dev ? 'http://localhost:8080/oauth-callback' : 'https://helloxxii.cscc.cf/oauth-callback');
 		} catch (e) {
-			if (e instanceof thinky.r.Error.ReqlServerError) {
-				return {
-					success: false,
-					error: 3011,
-					error_desc: e.name + ' ' + e.message,
-				};
-			} else if (e instanceof thinky.Errors.ValidationError) {
-				return {
-					success: false,
-					error: 3012,
-					error_desc: e.name + ' ' + e.message,
-				};
-			} else if (e instanceof Error) {
-				return {
-					success: false,
-					error: 3001,
-					error_desc: e.name + ' ' + e.message,
-				};
-			} else {
-				return {
-					success: false,
-					...e,
-				};
-			}
+			return genericError(e);
 		}
 	});
 	

@@ -39,4 +39,22 @@ export default {
   font-size: 16px;
   color: #254d86;
 }
+
+.center-content img {
+  text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+  .center-content h2 {
+    font-size: 45px;
+  }
+
+  .center-content h3 {
+    font-size: 32px;
+  }
+
+  .center-content span {
+    font-size: 15px;
+  }
+}
 </style>

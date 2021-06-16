@@ -2,7 +2,7 @@
   <div class="hint-btn">
     <h6>Your Hint</h6>
     <button class="click-action" @click="showHints">
-      <IconsKey color="#ffffff" />
+      <img src="~assets/icons/bulb.svg" />
     </button>
   </div>
 </template>
@@ -46,6 +46,10 @@ export default {
   height: 62px;
   margin: 5px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   border: none;
   border-radius: 50%;
   background: #ff6584;
@@ -55,13 +59,18 @@ export default {
 }
 
 @media only screen and (max-width: 767px) {
+  .hint-btn {
+    bottom: 10%;
+    right: 10%;
+  }
+
   .hint-btn h6 {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .hint-btn button {
-    width: 54px;
-    height: 54px;
+    width: 60px;
+    height: 60px;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <div class="box">
-      <IconsSearch />
+      <img src="~assets/icons/search.svg" />
       <input v-model="commit_code" type="text" @keypress.enter="submit" />
     </div>
     <BaseSubmit @submitHandle="submit" />
@@ -23,8 +23,8 @@ export default {
 
       if (this.success) {
         this.$swal({
-          title: "Paired",
-          text: "Now you are paired with your peer mentor",
+          title: "Great Job!",
+          text: "You've found your peer mentor.",
           icon: "success",
           showConfirmButton: false,
           width: 450,
@@ -56,10 +56,5 @@ export default {
 };
 </script>
 
-<style scoped>
-.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+<style>
 </style>

@@ -23,8 +23,9 @@ export default {};
 
 @media only screen and (max-width: 767px) {
   .box {
-    width: 130px;
-    height: 33px;
+    width: 140px;
+    height: 36px;
+    font-size: 15px;
     border-radius: 15px;
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <button class="signIn-btn click-action" @click="signIn">
-    <IconsMicrosoft />
+    <img src="~assets/icons/microsoft.svg" />
     <span>Sign in with Microsoft</span>
   </button>
 </template>

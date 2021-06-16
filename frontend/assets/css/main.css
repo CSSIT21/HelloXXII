@@ -7,6 +7,12 @@
   padding: 0;
 }
 
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .center-content {
   height: 100vh;
   width: 100vw;
@@ -30,7 +36,7 @@
   width: 350px;
   height: 45px;
   margin-top: 20px;
-  padding: 0 48px 0 15px;
+  padding: 0 45px 0 15px;
 
   border: 2px solid #c0bcc173;
   box-sizing: border-box;
@@ -39,7 +45,7 @@
 }
 
 .box:focus-within {
-  box-shadow: 1px 2px 6px rgba(56, 56, 56, 0.2);
+  box-shadow: 1px 2px 6px rgba(56, 56, 56, 0.22);
 }
 
 input {
@@ -67,13 +73,8 @@ input:focus {
   }
 
   .box {
-    width: 270px;
-    height: 38px;
-    font-size: 12px;
+    width: 300px;
+    height: 44px;
     border-radius: 15px;
-  }
-
-  input {
-    font-size: 12px;
   }
 }

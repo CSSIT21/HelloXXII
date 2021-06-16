@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <div class="box">
-      <IconsKey />
+      <img src="~assets/icons/key.svg" />
       <input v-model="pairing_code" type="text" @keypress.enter="submit" />
     </div>
     <BaseSubmit @submitHandle="submit" />
@@ -19,7 +19,7 @@ export default {
     submit() {
       if (!this.pairing_code) return;
 
-      if (this.correct_code === this.pairing_code) {
+      if (this.correct_code === this.pairing_code.toLowerCase()) {
         this.$swal({
           title: "Paired",
           text: "Now you are paired with your peer mentor",
@@ -43,10 +43,5 @@ export default {
 };
 </script>
 
-<style scoped>
-.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+<style>
 </style>

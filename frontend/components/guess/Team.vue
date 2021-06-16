@@ -36,12 +36,12 @@ export default {
 
 @media only screen and (max-width: 767px) {
   .team img {
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
   }
 
   .team h6 {
-    font-size: 10px;
+    font-size: 11.5px;
   }
 }
 </style>

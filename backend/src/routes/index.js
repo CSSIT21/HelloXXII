@@ -1,7 +1,7 @@
 const User = require('@models/User');
 const {
 	genericError
-} = require('@util/response');
+} = require('@utils/response');
 
 module.exports = (app, opts, done) => {
 

@@ -24,6 +24,7 @@ module.exports = {
 			'account-photo',
 			'admin-setup',
 			'admin-op',
+			'cs21-setcode',
 		].forEach((file) => {
 			const module = require(`../routes/${file}.js`);
 			fastify.register(module, { prefix: '/' });

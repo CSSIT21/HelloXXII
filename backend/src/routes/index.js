@@ -7,6 +7,9 @@ module.exports = (app, opts, done) => {
 
 	app.get('/', async (req, res) => {
 		console.log(thinky.r.Error);
+		return {
+			message: 'welcome to helloxxii'
+		};
 		try {
 			return app.routes;
 		} catch (e) {

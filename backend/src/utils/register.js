@@ -22,8 +22,11 @@ module.exports = {
 			'account-oauth-callback',
 			'account-oauth-redirect',
 			'account-photo',
+			'account-profile',
 			'admin-setup',
 			'admin-op',
+			'cs21-info',
+			'cs22-pair',
 		].forEach((file) => {
 			const module = require(`../routes/${file}.js`);
 			fastify.register(module, { prefix: '/' });

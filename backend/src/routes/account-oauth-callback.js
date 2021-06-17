@@ -71,10 +71,10 @@ module.exports = (app, opts, done) => {
 			});
 			
 			// * Fetch saved user information from database (identify by `graph.mail`).
-			const user = await User.getAll(graph.mail, { index: 'email' }).run();
+			const users = await User.getAll(graph.mail, { index: 'email' }).run();
 			
 			// * Check whether user is already exist in database or not.
-			if (user.length === 0) {
+			if (users.length === 0) {
 				// * Check whether user is insane candidate or not. If be a candidate, fetch back an insane document as `insane`.
 				const insane = await new Promise((resolve) => {
 					Insane.get(graph.mail).run()
@@ -118,7 +118,7 @@ module.exports = (app, opts, done) => {
 					{
 						id: document.id,
 						name: graph.displayName,
-						usertype: 1,
+						usertype: document.usertype,
 					},
 					jwtConstants.secret,
 					jwtConstants.options);
@@ -132,7 +132,7 @@ module.exports = (app, opts, done) => {
 					});
 			} else {
 				// * Update profile photo for existing user from retrieved Graph profile photo.
-				const document = await Photo.get(user[0].id).run();
+				const document = await Photo.get(users[0].id).run();
 				await document.merge({
 						mime: mime,
 						photo: thinky.r.binary(photo),
@@ -142,9 +142,9 @@ module.exports = (app, opts, done) => {
 				// * Sign JWT from existing database record.
 				const token = jwt.sign(
 					{
-						id: user[0].id,
-						name: user[0].name,
-						usertype: user[0].usertype,
+						id: users[0].id,
+						name: users[0].name,
+						usertype: users[0].usertype,
 					},
 					jwtConstants.secret,
 					jwtConstants.options);

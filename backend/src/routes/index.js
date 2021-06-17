@@ -10,7 +10,7 @@ module.exports = (app, opts, done) => {
 		try {
 			return app.routes;
 		} catch (e) {
-			genericError(e);
+			return genericError(e);
 		}
 	});
 

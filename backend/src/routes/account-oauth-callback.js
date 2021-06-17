@@ -1,14 +1,13 @@
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
 const qs = require('qs');
-const jwtContrants = require('../constants/jwt.json');
+const jwtConstants = require('../constants/jwt.json');
 const { dev, url } = require('@utils/environment');
 const { genericError, axiosError } = require('@utils/response');
 const User = require('@models/User');
 const Photo = require('@models/Photo');
 const Insane = require('@models/Insane');
 const Noob = require('@models/Noob');
-const Coline = require('@models/Coline');
 
 module.exports = (app, opts, done) => {
 	app.get('/account/oauth-callback', async (req, res) => {
@@ -105,6 +104,8 @@ module.exports = (app, opts, done) => {
 						pair: null,
 					});
 				} else {
+					// Case of user is insane, create new insane record with the same data (`coline` field) but change id
+					// to be uuid of the recently created user record. Then delete the candidate record.
 					await Insane.save({
 						...insane,
 						id: document.id,
@@ -119,8 +120,8 @@ module.exports = (app, opts, done) => {
 						name: graph.displayName,
 						usertype: 1,
 					},
-					jwtContrants.secret,
-					jwtContrants.options);
+					jwtConstants.secret,
+					jwtConstants.options);
 				
 				res.cookie(
 					'token',
@@ -131,8 +132,8 @@ module.exports = (app, opts, done) => {
 					});
 			} else {
 				// * Update profile photo for existing user from retrieved Graph profile photo.
-				const record = await Photo.get(user[0].id).run();
-				await record.merge({
+				const document = await Photo.get(user[0].id).run();
+				await document.merge({
 						mime: mime,
 						photo: thinky.r.binary(photo),
 					})
@@ -145,8 +146,8 @@ module.exports = (app, opts, done) => {
 						name: user[0].name,
 						usertype: user[0].usertype,
 					},
-					jwtContrants.secret,
-					jwtContrants.options);
+					jwtConstants.secret,
+					jwtConstants.options);
 				
 				res.cookie(
 					'token',

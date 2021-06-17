@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const adminContrants = require('../constants/admin.json');
+const adminConstants = require('../constants/admin.json');
 const { genericError } = require('@utils/response');
 const User = require('@models/User');
 const Photo = require('@models/Photo');
@@ -11,12 +11,12 @@ module.exports = (app, opts, done) => {
 	app.patch('/admin/setup', async (req, res) => {
 		// * Check for bearer admin token
 		const bearer = req.headers.authorization.split(' ')[1];
-		if (crypto.createHash('sha256').update(bearer).digest('hex') !== adminContrants.secret) {
+		if (crypto.createHash('sha256').update(bearer).digest('hex') !== adminConstants.secret) {
 			return res.code(401).send();
 		}
 		
 		// * Parse request body and correct default
-		let { colines, insanes } = req.body;
+		const { colines, insanes } = req.body;
 		const colineMap = {};
 		
 		try {

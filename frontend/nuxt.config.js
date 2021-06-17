@@ -53,7 +53,8 @@ export default {
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://helloxxii-api.cscc.cf'
+    // baseURL: 'https://helloxxii-api.cscc.cf',
+    baseURL: 'http://localhost:8081'
   },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

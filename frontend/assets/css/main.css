@@ -55,6 +55,8 @@ input {
   font-size: 15px;
   letter-spacing: 1px;
   text-align: center;
+
+  background: none;
   border: none;
 }
 

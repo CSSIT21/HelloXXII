@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 module.exports = {
 	genericError: (e) => {
 		if (e instanceof thinky.r.Error.ReqlServerError) {
@@ -12,6 +14,14 @@ module.exports = {
 			return {
 				success: false,
 				error: 3012,
+				error_desc: e.name + ' ' + e.message,
+			};
+		}
+		
+		if (e instanceof jwt.JsonWebTokenError || e instanceof jwt.TokenExpiredError) {
+			return {
+				success: false,
+				error: 3022,
 				error_desc: e.name + ' ' + e.message,
 			};
 		}

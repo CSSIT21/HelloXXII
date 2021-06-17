@@ -10,12 +10,17 @@
     <div class="center">
       <h1>Your Hints</h1>
       <OverviewHints />
+      <OverviewHintsOverlay />
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  components: {
+    OverviewHintsOverlay: () =>
+      import("~/components/base/HintsSheetOverlay.vue"),
+  },
   data: () => ({
     code: "Food is the most powerful",
   }),

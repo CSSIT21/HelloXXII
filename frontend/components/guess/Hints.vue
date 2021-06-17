@@ -1,41 +1,48 @@
 <template>
-  <div class="hint-btn">
-    <h6>Your Hint</h6>
-    <button class="click-action" @click="showHints">
-      <img src="~assets/icons/bulb.svg" />
-    </button>
+  <div>
+    <div class="hint-btn">
+      <span>Your Hint</span>
+      <button class="click-action" @click="showHints">
+        <img src="~/assets/icons/bulb.svg" />
+      </button>
+    </div>
+    <BaseHintsSheet :hints="hints" />
   </div>
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+
 export default {
   data: () => ({
-    hints: "Love buffet, Want to eat chocolate, Work from bed",
-    quota_used: 3,
+    hints: [
+      "Love buffet",
+      "Want to eat chocolateldvjnsldkvlskdnvlksdvnklsdnlkvshdvklhlhl",
+      " Work from bed",
+      "Love Food",
+      "Love buffet",
+    ],
   }),
   methods: {
     showHints() {
-      this.$swal({
-        title: `Your ${this.quota_used} Hint`,
-        text: this.hints,
-        icon: "question",
-        confirmButtonColor: "#4f8ae3",
-        width: 450,
-      });
+      this.show = true;
     },
+  },
+  computed: {
+    ...mapFields(["hint.show"]),
   },
 };
 </script>
 
 <style scoped>
 .hint-btn {
-  position: absolute;
+  position: fixed;
   right: 12%;
   bottom: 15%;
   text-align: center;
 }
 
-.hint-btn h6 {
+.hint-btn span {
   font-size: 12.5px;
   font-weight: 500;
   color: #867e88;
@@ -64,7 +71,7 @@ export default {
     right: 10%;
   }
 
-  .hint-btn h6 {
+  .hint-btn span {
     font-size: 12px;
   }
 

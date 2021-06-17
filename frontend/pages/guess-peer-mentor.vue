@@ -7,12 +7,20 @@
     </div>
     <BaseAccount />
     <GuessHints />
+    <GuessHintsOverlay />
   </div>
 </template>
 
 <script>
-export default {};
+import { mapFields } from "vuex-map-fields";
+
+export default {
+  components: {
+    GuessHintsOverlay: () => import("~/components/base/HintsSheetOverlay.vue"),
+  },
+  computed: {
+    ...mapFields(["hint.show"]),
+  },
+};
 </script>
 
-<style>
-</style>

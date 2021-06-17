@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <button class="btn click-action" @click="openHints">
+  <div class="center">
+    <button class="btn click-action" @click="showHints">
       <img src="~/assets/icons/bulb.svg" />
     </button>
+    <BaseHintsSheet :hints="hints" />
   </div>
 </template>
 
 <script>
+import { mapFields } from "vuex-map-fields";
+
 export default {
   data: () => ({
     hints: [
@@ -18,7 +21,12 @@ export default {
     ],
   }),
   methods: {
-    openHints() {},
+    showHints() {
+      this.show = true;
+    },
+  },
+  computed: {
+    ...mapFields(["hint.show"]),
   },
 };
 </script>

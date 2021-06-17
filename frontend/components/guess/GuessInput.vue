@@ -1,7 +1,7 @@
 <template>
   <div class="center">
     <div class="box">
-      <img src="~assets/icons/search.svg" />
+      <img src="~/assets/icons/search.svg" />
       <input v-model="commit_code" type="text" @keypress.enter="submit" />
     </div>
     <BaseSubmit @submitHandle="submit" />
@@ -28,7 +28,7 @@ export default {
           icon: "success",
           showConfirmButton: false,
           width: 450,
-          timer: 2200,
+          timer: 2000,
         }).then(() => this.$router.push({ name: "congrat" }));
       } else {
         if (this.error === 4007) {

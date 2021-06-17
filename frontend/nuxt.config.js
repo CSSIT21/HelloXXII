@@ -22,7 +22,8 @@ export default {
       rel: 'icon',
       type: 'image/x-icon',
       href: '/favicon.ico'
-    }]
+    }
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -51,7 +52,9 @@ export default {
     '@nuxtjs/pwa',
   ],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: 'https://helloxxii-api.cscc.cf'
+  },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
@@ -64,6 +67,7 @@ export default {
 
   server: {
     host: '0.0.0.0', // default: localhost,
-    timing: false
+    timing: false,
+    port: 8080
   }
 }

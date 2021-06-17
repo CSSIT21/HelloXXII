@@ -6,7 +6,9 @@ import {
 
 const store = () => new Vuex.Store({
   state: {
-
+    hint: {
+      show: false
+    }
   },
   getters: {
     getField
@@ -15,7 +17,11 @@ const store = () => new Vuex.Store({
     updateField
   },
   actions: {
-
+    login({ commit }) {
+      this.$axios.get('/account/oauth').then(({ data }) => {
+        window.location.href = (data.oauth_url);
+      });
+    }
   }
 });
 

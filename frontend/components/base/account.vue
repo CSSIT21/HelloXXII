@@ -1,6 +1,6 @@
 <template>
   <button @click="logout" class="account-btn">
-    <img src="~assets/icons/logout.svg" />
+    <img src="~/assets/icons/logout.svg" />
     <span>{{ firstname }}</span>
   </button>
 </template>
@@ -32,7 +32,7 @@ export default {
 
 <style scoped>
 .account-btn {
-  position: absolute;
+  position: fixed;
   bottom: 2%;
   left: 50%;
   transform: translateX(-50%);

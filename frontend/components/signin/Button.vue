@@ -1,6 +1,6 @@
 <template>
   <button class="signIn-btn click-action" @click="signIn">
-    <img src="~assets/icons/microsoft.svg" />
+    <img src="~/assets/icons/microsoft.svg" />
     <span>Sign in with Microsoft</span>
   </button>
 </template>
@@ -9,7 +9,8 @@
 export default {
   methods: {
     signIn() {
-      this.$router.push({ name: "pair-peer-mentor" });
+      //this.$router.push({ name: "pair-peer-mentor" });
+      this.$store.dispatch("login");
     },
   },
 };

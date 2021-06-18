@@ -52,7 +52,7 @@ export default {
   color: rgb(139, 139, 139);
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .box {
     min-width: 270px;
     max-width: 330px;

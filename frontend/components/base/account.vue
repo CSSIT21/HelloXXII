@@ -52,14 +52,14 @@ export default {
 .account-btn span {
   padding-left: 10px;
   font-size: 14px;
-  color: #afacaf;
+  color: #979797;
 }
 
 .account-btn:active {
   transform: scale(0.8) translateX(-50%);
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
   .account-btn span {
     font-size: 13px;
   }

@@ -9,6 +9,7 @@
 
 <script>
 export default {
+  layout: "background_bottom",
   data: () => ({
     mentor_name: "Monthara",
   }),
@@ -16,10 +17,6 @@ export default {
 </script>
 
 <style scoped>
-.center-content {
-  height: 60vh;
-}
-
 .center-content h2 {
   margin: 12px 0 4px 0;
   font-size: 50px;
@@ -44,7 +41,7 @@ export default {
   text-align: center;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
   .center-content h2 {
     font-size: 45px;
   }

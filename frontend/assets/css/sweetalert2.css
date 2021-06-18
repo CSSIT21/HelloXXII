@@ -5,3 +5,7 @@
 .swal2-confirm.swal2-styled:focus {
   box-shadow: none;
 }
+
+.swal2-shown.swal2-height-auto {
+  height: 100vh !important;
+}

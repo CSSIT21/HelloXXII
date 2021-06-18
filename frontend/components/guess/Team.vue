@@ -34,7 +34,7 @@ export default {
   color: #fcb9b4;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .team img {
     width: 65px;
     height: 65px;

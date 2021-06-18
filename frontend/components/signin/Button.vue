@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 .signIn-btn {
-  width: 271.25px;
+  width: 300px;
   height: 47.5px;
   display: flex;
   justify-content: center;
@@ -29,7 +29,6 @@ export default {
   border: none;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 
-  color: #717171;
   cursor: pointer;
   transition: all 0.1s;
 }
@@ -37,6 +36,7 @@ export default {
 .signIn-btn span {
   margin-left: 3%;
   font-size: 15px;
+  color: #5e5e5e;
   letter-spacing: 1px;
 }
 
@@ -45,15 +45,15 @@ export default {
   background-color: #ffeaea;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
   .signIn-btn {
-    width: 220px;
-    height: 38px;
-    border-radius: 15px;
+    width: 280px;
+    height: 44px;
+    border-radius: 17px;
   }
 
   .signIn-btn span {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 </style>

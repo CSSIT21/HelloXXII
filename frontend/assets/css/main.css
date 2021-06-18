@@ -7,6 +7,16 @@
   padding: 0;
 }
 
+body {
+  width: 100vw;
+  height: 100vh !important;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .center {
   display: flex;
   flex-direction: column;
@@ -14,9 +24,6 @@
 }
 
 .center-content {
-  height: 100vh;
-  width: 100vw;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,6 +45,7 @@
   margin-top: 20px;
   padding: 0 45px 0 15px;
 
+  background-color: white;
   border: 2px solid #c0bcc173;
   box-sizing: border-box;
   border-radius: 19px;
@@ -69,7 +77,7 @@ input:focus {
   transform: scale(0.9);
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 600px) {
   .center-content h1 {
     font-size: 25px;
   }

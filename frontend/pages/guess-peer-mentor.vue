@@ -1,26 +1,25 @@
 <template>
   <div>
-    <div class="center-content">
+    <div class="center-content wrap">
       <h1>Guess Peer Mentor</h1>
       <GuessInput />
       <GuessTeam />
     </div>
-    <BaseAccount />
     <GuessHints />
     <GuessHintsOverlay />
   </div>
 </template>
 
 <script>
-import { mapFields } from "vuex-map-fields";
-
 export default {
+  layout: "background_corner",
   components: {
     GuessHintsOverlay: () => import("~/components/base/HintsSheetOverlay.vue"),
   },
-  computed: {
-    ...mapFields(["hint.show"]),
-  },
 };
 </script>
+
+<style scoped>
+@import "~/assets/css/wrap-center-content.css";
+</style>
 

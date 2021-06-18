@@ -2,7 +2,7 @@
   <div>
     <div class="hint-btn">
       <span>Your Hint</span>
-      <button class="click-action" @click="showHints">
+      <button class="click-action" @click="show = true">
         <img src="~/assets/icons/bulb.svg" />
       </button>
     </div>
@@ -17,17 +17,12 @@ export default {
   data: () => ({
     hints: [
       "Love buffet",
-      "Want to eat chocolateldvjnsldkvlskdnvlksdvnklsdnlkvshdvklhlhl",
+      "Want to eat chocolate! Do you hear me? gimme some chocolateee :(",
       " Work from bed",
       "Love Food",
-      "Love buffet",
+      "Watch movie everyday",
     ],
   }),
-  methods: {
-    showHints() {
-      this.show = true;
-    },
-  },
   computed: {
     ...mapFields(["hint.show"]),
   },
@@ -65,7 +60,7 @@ export default {
   transition: all 0.05s;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .hint-btn {
     bottom: 10%;
     right: 10%;

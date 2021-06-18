@@ -62,7 +62,7 @@ export default {
   color: #ffffff;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .btn {
     width: 60px;
     height: 60px;

@@ -1,6 +1,6 @@
 <template>
   <div class="center">
-    <button class="btn click-action" @click="showHints">
+    <button class="btn click-action" @click="show = true">
       <img src="~/assets/icons/bulb.svg" />
     </button>
     <BaseHintsSheet :hints="hints" />
@@ -20,11 +20,6 @@ export default {
       "ปิดท้ายด้วยหม่าล่าเที่ยงคืน",
     ],
   }),
-  methods: {
-    showHints() {
-      this.show = true;
-    },
-  },
   computed: {
     ...mapFields(["hint.show"]),
   },
@@ -49,7 +44,7 @@ export default {
   transition: all 0.05s;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .btn {
     width: 60px;
     height: 60px;

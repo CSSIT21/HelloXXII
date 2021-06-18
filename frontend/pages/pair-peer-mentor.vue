@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <div class="center-content">
-      <h1>Enter Your Code</h1>
-      <PairCodeInput />
-    </div>
-    <BaseAccount />
+  <div class="center-content wrap">
+    <h1>Enter Your Code</h1>
+    <PairCodeInput />
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  layout: "background_corner",
+};
 </script>
 
-<style>
+<style scoped>
+@import "~/assets/css/wrap-center-content.css";
 </style>

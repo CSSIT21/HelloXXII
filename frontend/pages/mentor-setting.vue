@@ -15,7 +15,7 @@ export default {};
   height: 90vh;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .center-content {
     height: 82vh;
   }

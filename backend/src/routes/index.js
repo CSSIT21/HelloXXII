@@ -1,21 +1,9 @@
-const User = require('@models/User');
-const {
-	genericError
-} = require('@utils/response');
+const { genericError } = require('@utils/response');
 
 module.exports = (app, opts, done) => {
-
 	app.get('/', async (req, res) => {
-		console.log(thinky.r.Error);
-		return {
-			message: 'welcome to helloxxii'
-		};
-		try {
-			return app.routes;
-		} catch (e) {
-			return genericError(e);
-		}
+		return Object.fromEntries(app.routes);
 	});
-
+	
 	done();
 };

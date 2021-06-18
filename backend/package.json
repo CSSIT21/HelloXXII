@@ -43,7 +43,7 @@
 		"webpack-cli": "^4.7.2"
 	},
 	"_moduleAliases": {
-		"~": "./",
+		"~": "./src",
 		"@app": "./src/app",
 		"@constants": "./src/constants",
 		"@models": "./src/models",

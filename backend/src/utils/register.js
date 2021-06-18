@@ -26,8 +26,10 @@ module.exports = {
 			'account-profile',
 			'admin-setup',
 			'admin-op',
-			'cs21-setcode',
 			'cs21-info',
+			'cs21-setcode',
+			'cs21-sethints',
+			'cs22-info',
 			'cs22-pair',
 		].forEach((file) => {
 			const module = require(`../routes/${file}.js`);

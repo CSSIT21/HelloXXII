@@ -21,20 +21,19 @@ module.exports = (app, opts, done) => {
 			// * Fetch noob record of the user.
 			const document = await Noob.get(id).run();
 			
-			// * Fetch paired insane record of the user.
-			const insane = new Promise((resolve, reject) => {
+			// * Fetch hints from paired insane record of the user.
+			const hints = new Promise((resolve) => {
 				Insane.get(document.pair).run()
-					.then((record) => resolve(record))
-					.catch((e) => reject({
-						error: 4001,
-						error_desc: 'User have never pair with mentor yet.',
-					}));
+					.then((record) => resolve(record.hints.slice(0, document.attempts.length)))
+					.catch(() => resolve([]));
 			});
 			
 			return {
+				paired: document.pair,
+				found: document.found,
 				quota_remaining: document.quota,
-				quota_used: document.attempt.length,
-				hints: insane.hints.slice(0, document.attempt.length),
+				quota_used: document.attempts.length,
+				hints: hints,
 			};
 		} catch (e) {
 			return genericError(e);

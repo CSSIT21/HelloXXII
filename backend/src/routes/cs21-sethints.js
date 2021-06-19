@@ -32,7 +32,7 @@ module.exports = (app, opts, done) => {
 			// * Verify that the insane record of the user is never set hint before.
 			const document = await Insane.get(id).run();
 			
-			if (document.hints) {
+			if (document.hints.length > 0) {
 				return {
 					success: false,
 					error: 4003,

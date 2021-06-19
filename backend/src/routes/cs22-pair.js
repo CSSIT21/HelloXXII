@@ -8,7 +8,7 @@ const Noob = require('@models/Noob');
 module.exports = (app, opts, done) => {
 	app.post('/cs22/pair', async (req, res) => {
 		try {
-			const { paringcode } = req.body;
+			const { paringCode } = req.body;
 			const { id, usertype } = jwt.verify(req.cookies.token, jwtConstants.secret);
 			
 			if (usertype !== 1) {
@@ -29,7 +29,7 @@ module.exports = (app, opts, done) => {
 				};
 			}
 			
-			const insanes = await Insane.filter({ pair: paringcode }).run();
+			const insanes = await Insane.filter({ pair: paringCode }).run();
 			if (insanes.length === 0) {
 				return {
 					success: false,

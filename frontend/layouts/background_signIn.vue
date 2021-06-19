@@ -32,7 +32,7 @@ export default {};
   position: fixed;
   z-index: -100;
   right: 0%;
-  top: 90%;
+  top: 85%;
 
   background-image: url("~assets/background/web/bottom.svg");
   background-repeat: no-repeat;

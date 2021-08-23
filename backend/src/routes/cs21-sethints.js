@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const jwtConstants = require('../constants/jwt.json');
 const { genericError, axiosError } = require('@utils/response');
-const Insane = require('@models/Insane');
+const Senpai = require('@models/Senpai');
 
 const alphanumRegex = /^[a-zA-Z0-9_-]*$/;
 
@@ -30,7 +30,7 @@ module.exports = (app, opts, done) => {
 			}
 			
 			// * Verify that the insane record of the user is never set hint before.
-			const document = await Insane.get(id).run();
+			const document = await Senpai.get(id).run();
 			
 			if (document.hints.length > 0) {
 				return {

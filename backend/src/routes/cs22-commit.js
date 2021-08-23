@@ -3,8 +3,8 @@ const jwtConstants = require('../constants/jwt.json');
 const { url } = require('@utils/environment');
 const { genericError, axiosError } = require('@utils/response');
 const User = require('@models/User');
-const Insane = require('@models/Insane');
-const Noob = require('@models/Noob');
+const Senpai = require('@models/Senpai');
+const Kohi = require('@models/Kohi');
 
 module.exports = (app, opts, done) => {
 	app.get('/cs22/commit', async (req, res) => {
@@ -21,8 +21,8 @@ module.exports = (app, opts, done) => {
 				};
 			}
 			
-			// * Fetch noob record of the user.
-			const document = await Noob.get(id).run();
+			// * Fetch kohi record of the user.
+			const document = await Kohi.get(id).run();
 			
 			if (document.found) {
 				return {
@@ -48,8 +48,8 @@ module.exports = (app, opts, done) => {
 				};
 			}
 			
-			const insanes = await Insane.filter({ code: commitCode }).run();
-			if (insanes.length === 0) {
+			const senpais = await Senpai.filter({ code: commitCode }).run();
+			if (senpais.length === 0) {
 				return {
 					success: false,
 					error: 4006,
@@ -63,7 +63,7 @@ module.exports = (app, opts, done) => {
 				attempts: [...document.attempts, commitCode],
 			}).save();
 			
-			if (insanes[0].id !== document.pair) {
+			if (senpais[0].id !== document.pair) {
 				return {
 					success: false,
 					error: 4007,
@@ -77,12 +77,12 @@ module.exports = (app, opts, done) => {
 				found: true,
 			}).save();
 			
-			const insaneUser = await User.get(insanes[0].id).run();
+			const senpaiUser = await User.get(senpais[0].id).run();
 			
 			return {
 				success: true,
-				mentor_name: insaneUser.name,
-				mentor_avatar: url + +'/account/photo/' + insaneUser.id,
+				mentor_name: senpaiUser.name,
+				mentor_avatar: url + +'/account/photo/' + senpaiUser.id,
 			};
 		} catch (e) {
 			return genericError(e);

@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const jwtConstants = require('../constants/jwt.json');
 const { url } = require('@utils/environment');
 const { genericError, axiosError } = require('@utils/response');
-const Insane = require('@models/Insane');
+const Senpai = require('@models/Senpai');
 
 module.exports = (app, opts, done) => {
 	app.get('/cs21/info', async (req, res) => {
@@ -17,7 +17,7 @@ module.exports = (app, opts, done) => {
 				};
 			}
 			
-			const document = await Insane.get(id);
+			const document = await Senpai.get(id);
 			return {
 				success: true,
 				...document,

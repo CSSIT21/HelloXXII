@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 const jwtConstants = require('../constants/jwt.json');
 const { url } = require('@utils/environment');
 const { genericError, axiosError } = require('@utils/response');
-const Insane = require('@models/Insane');
-const Noob = require('@models/Noob');
+const Senpai = require('@models/Senpai');
+const Kohi = require('@models/Kohi');
 
 module.exports = (app, opts, done) => {
 	app.post('/cs22/pair', async (req, res) => {
@@ -19,7 +19,7 @@ module.exports = (app, opts, done) => {
 				};
 			}
 			
-			const document = await Noob.get(id);
+			const document = await Kohi.get(id).run();
 			
 			if (document.pair !== null) {
 				return {
@@ -29,25 +29,24 @@ module.exports = (app, opts, done) => {
 				};
 			}
 			
-			const insanes = await Insane.filter({ pair: paringCode }).run();
-			if (insanes.length === 0) {
+			const senpais = await Senpai.filter({ pairing_code: paringCode }).run();
+			if (senpais.length === 0) {
 				return {
 					success: false,
 					error: 4003,
 					error_desc: 'Incorrect paring code.',
 				};
 			} else {
-				const anotherNoob = await Noob.filter({ pair: insanes[0].id }).run();
-				if (anotherNoob.length > 0) {
+				if (senpais[0].kohis.length() >= 2) {
 					return {
 						success: false,
 						error: 4004,
-						error_desc: 'The paring code has been previously used.',
+						error_desc: 'The paring code has been reached quota limit.',
 					};
 				}
 				
 				await document.merge({
-					pair: insanes[0].id,
+					senpai: senpais[0].id,
 				}).save();
 			}
 			

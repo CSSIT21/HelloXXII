@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 const jwtConstants = require('../constants/jwt.json');
 const { url } = require('@utils/environment');
 const { genericError, axiosError } = require('@utils/response');
-const Insane = require('@models/Insane');
-const Noob = require('@models/Noob');
+const Senpai = require('@models/Senpai');
+const Kohi = require('@models/Kohi');
 
 module.exports = (app, opts, done) => {
 	app.get('/cs22/info', async (req, res) => {
@@ -19,7 +19,7 @@ module.exports = (app, opts, done) => {
 			}
 			
 			// * Fetch noob record of the user.
-			const document = await Noob.get(id).run();
+			const document = await Kohi.get(id).run();
 			
 			// * Fetch hints from paired insane record of the user.
 			const hints = new Promise((resolve) => {

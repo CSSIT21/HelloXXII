@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const jwtConstants = require('../constants/jwt.json');
 const { genericError, axiosError } = require('@utils/response');
-const Insane = require('@models/Insane');
+const Senpai = require('@models/Senpai');
 
 const alphanumRegex = /^[a-zA-Z0-9_-]*$/;
 
@@ -31,7 +31,7 @@ module.exports = (app, opts, done) => {
 			}
 			
 			// * Verify that the insane record of the user is never set the pairing code or commit code.
-			const document = await Insane.get(id).run();
+			const document = await Senpai.get(id).run();
 			if (document.pair && document.code) {
 				return {
 					success: false,
@@ -41,7 +41,7 @@ module.exports = (app, opts, done) => {
 			}
 			
 			// * Check for code previously taken by another one.
-			const duplicated = await Insane.filter(
+			const duplicated = await Senpai.filter(
 				thinky.r.row('pair').eq(pairingcode)
 					.or(
 						thinky.r.row('code').eq(commitcode),
@@ -57,8 +57,8 @@ module.exports = (app, opts, done) => {
 			}
 			
 			await document.merge({
-				pair: pairingCode,
-				code: commitCode,
+				pairing_code: pairingCode,
+				commit_code: commitCode,
 			}).save();
 			
 			return {

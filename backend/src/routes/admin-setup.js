@@ -5,7 +5,6 @@ const User = require('@models/User');
 const Photo = require('@models/Photo');
 const Senpai = require('@models/Senpai');
 const Kohi = require('@models/Kohi');
-const Coline = require('@models/Coline');
 
 module.exports = (app, opts, done) => {
 	app.patch('/admin/setup', async (req, res) => {
@@ -25,7 +24,6 @@ module.exports = (app, opts, done) => {
 				thinky.r.table(Photo.getTableName()).delete().run(),
 				thinky.r.table(Senpai.getTableName()).delete().run(),
 				thinky.r.table(Kohi.getTableName()).delete().run(),
-				thinky.r.table(Coline.getTableName()).delete().run(),
 			]);
 			
 			// * Insert Senpai

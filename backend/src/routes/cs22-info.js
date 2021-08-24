@@ -21,19 +21,23 @@ module.exports = (app, opts, done) => {
 			// * Fetch noob record of the user.
 			const document = await Kohi.get(id).run();
 			
-			// * Fetch hints from paired insane record of the user.
-			const hints = new Promise((resolve) => {
-				Insane.get(document.pair).run()
-					.then((record) => resolve(record.hints.slice(0, document.attempts.length)))
+			// * Fetch info from paired insane record of the user.
+			const info = new Promise((resolve) => {
+				Senpai.get(document.senpai).run()
+					.then((record) => resolve({
+						color_name: record.color_name,
+						color_code: record.color_code,
+						hints: record.hints.slice(0, document.attempts.length),
+					}))
 					.catch(() => resolve([]));
 			});
 			
 			return {
-				paired: document.pair,
+				paired: document.senpai,
 				found: document.found,
 				quota_remaining: document.quota,
 				quota_used: document.attempts.length,
-				hints: hints,
+				...info,
 			};
 		} catch (e) {
 			return genericError(e);

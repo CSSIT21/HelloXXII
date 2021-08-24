@@ -55,6 +55,7 @@ export default {
   border: none;
   border-radius: 50%;
   background: #ff6584;
+  box-shadow: 1px 2px 3px 0 rgb(175, 175, 175);
 
   cursor: pointer;
   transition: all 0.05s;

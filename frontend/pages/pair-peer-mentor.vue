@@ -1,7 +1,9 @@
 <template>
-  <div class="center-content wrap">
-    <h1>Enter Your Code</h1>
-    <PairCodeInput />
+  <div class="middle-page">
+    <div class="center-content wrap">
+      <h1>Enter Your Code</h1>
+      <PairCodeInput />
+    </div>
   </div>
 </template>
 

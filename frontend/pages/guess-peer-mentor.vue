@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="middle-page">
     <div class="center-content wrap">
       <h1>Guess Peer Mentor</h1>
       <GuessInput />

@@ -2,7 +2,6 @@
   <div>
     <div class="bg-top"></div>
     <Nuxt />
-    <div class="bg-bottom"></div>
     <img src="~/assets/images/picture-login.svg" />
   </div>
 </template>
@@ -21,50 +20,49 @@ export default {};
   right: 0%;
   top: 0%;
 
-  background-image: url("~assets/background/web/top.svg");
-  background-repeat: no-repeat;
-}
-
-.bg-bottom {
-  width: 100%;
-  height: 100%;
-
-  position: fixed;
-  z-index: -100;
-  right: 0%;
-  top: 85%;
-
-  background-image: url("~assets/background/web/bottom.svg");
+  background-image: url("~assets/background/phone/top.svg");
   background-repeat: no-repeat;
 }
 
 img {
-  display: none;
+  display: block;
+  position: absolute;
+  bottom: 1%;
+  left: 50%;
+  transform: translateX(-45%);
 }
 
-@media only screen and (max-width: 600px) {
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
   .bg-top {
-    background-image: url("~assets/background/phone/top.svg");
+    top: -30%;
   }
 
   img {
-    display: block;
-    position: absolute;
-    bottom: 4%;
-    left: 50%;
-    transform: translateX(-45%);
-  }
-
-  .bg-bottom {
-    width: 0%;
-    height: 0%;
-    background-image: none;
+    width: 350px;
   }
 }
 
-@media only screen and (min-width: 601px) and (max-width: 768px) {
-  .bg-bottom {
-    top: 86%;
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .bg-top {
+    top: -25%;
+  }
+
+  img {
+    width: 500px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .bg-top {
+    top: 0%;
+    background-image: url("~assets/background/web/top.svg");
+  }
+
+  img {
+    display: none;
   }
 }
 </style>

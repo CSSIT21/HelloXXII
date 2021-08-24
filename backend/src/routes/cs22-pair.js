@@ -48,6 +48,10 @@ module.exports = (app, opts, done) => {
 				await document.merge({
 					senpai: senpais[0].id,
 				}).save();
+				
+				await senpais[0].merge({
+					kohis: [...senpais[0].kohis, document.id],
+				}).save();
 			}
 			
 			return {

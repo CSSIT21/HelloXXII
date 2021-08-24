@@ -63,7 +63,7 @@ module.exports = (app, opts, done) => {
 				attempts: [...document.attempts, commitCode],
 			}).save();
 			
-			if (senpais[0].id !== document.pair) {
+			if (senpais[0].id !== document.senpai) {
 				return {
 					success: false,
 					error: 4007,

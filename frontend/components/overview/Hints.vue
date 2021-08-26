@@ -28,8 +28,8 @@ export default {
 
 <style scoped>
 .btn {
-  width: 62px;
-  height: 62px;
+  width: 64px;
+  height: 64px;
   margin-top: 15px;
 
   display: flex;
@@ -45,10 +45,27 @@ export default {
   transition: all 0.05s;
 }
 
-@media only screen and (max-width: 768px) {
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
   .btn {
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .btn {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .btn {
+    width: 64px;
+    height: 64px;
   }
 }
 </style>

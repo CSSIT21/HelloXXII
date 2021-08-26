@@ -1,22 +1,25 @@
 <template>
-  <div class="center-content">
-    <div class="center">
-      <h1>Your Code</h1>
-      <div class="box">
-        <p>{{ code }}</p>
+  <div class="middle-page">
+    <div class="center-content wrap">
+      <div class="center">
+        <h1>Your Code</h1>
+        <div class="box">
+          <p>{{ code }}</p>
+        </div>
       </div>
-    </div>
 
-    <div class="center">
-      <h1>Your Hints</h1>
-      <OverviewHints />
-      <OverviewHintsOverlay />
+      <div class="center">
+        <h1>Your Hints</h1>
+        <OverviewHints />
+        <OverviewHintsOverlay />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  layout: "background_corner",
   components: {
     OverviewHintsOverlay: () =>
       import("~/components/base/HintsSheetOverlay.vue"),
@@ -28,8 +31,14 @@ export default {
 </script>
 
 <style scoped>
+@import "~/assets/css/wrap-center-content.css";
+
+.center-content {
+  margin-top: 24px;
+}
+
 .center-content > div {
-  margin: 20px 0;
+  margin: 24px 0;
 }
 
 .box {
@@ -52,10 +61,39 @@ export default {
   color: rgb(139, 139, 139);
 }
 
-@media only screen and (max-width: 768px) {
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
   .box {
-    min-width: 270px;
-    max-width: 330px;
+    min-width: 370px;
+    max-width: 400px;
+  }
+
+  .center-content {
+    margin-top: 40px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .box {
+    min-width: 420px;
+    max-width: 460px;
+  }
+
+  .center-content {
+    margin-top: 70px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .box {
+    min-width: 370px;
+    max-width: 400px;
+  }
+
+  .center-content {
+    margin-top: 50px;
   }
 }
 </style>

@@ -80,7 +80,7 @@ input:focus {
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .center-content h1 {
-    font-size: 33px;
+    font-size: 34px;
   }
 
   .box {
@@ -94,7 +94,7 @@ input:focus {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .center-content h1 {
-    font-size: 45px;
+    font-size: 40px;
   }
 
   .box {

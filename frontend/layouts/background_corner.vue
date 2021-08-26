@@ -18,10 +18,10 @@ export default {};
 
   position: fixed;
   z-index: -100;
-  top: 0%;
+  top: -4%;
   right: 0%;
 
-  background-image: url("~assets/background/web/right.svg");
+  background-image: url("~assets/background/phone/right.svg");
   background-repeat: no-repeat;
 }
 
@@ -32,24 +32,41 @@ export default {};
   position: fixed;
   z-index: -100;
   left: 0%;
+  top: 66%;
 
+  background-image: url("~assets/background/phone/left.svg");
   background-repeat: no-repeat;
 }
 
-@media only screen and (max-width: 600px) {
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
   .bg-right {
-    background-image: url("~assets/background/phone/right.svg");
+    top: -16%;
   }
 
   .bg-left {
-    background-image: url("~assets/background/phone/left.svg");
+    top: 56%;
   }
 }
 
-@media only screen and (min-width: 601px) and (max-width: 768px) {
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
   .bg-left {
-    top: 63%;
+    top: 55%;
+    left: -2%;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .bg-right {
+    background-image: url("~assets/background/web/right.svg");
+    left: 20%;
+  }
+
+  .bg-left {
     background-image: url("~assets/background/web/left.svg");
+    top: 43%;
   }
 }
 </style>

@@ -7,7 +7,7 @@
   padding: 0;
 }
 
-body {
+.middle-page {
   width: 100vw;
   height: 100vh !important;
 
@@ -32,7 +32,7 @@ body {
 
 .center-content h1 {
   font-weight: 600;
-  font-size: 31.25px;
+  font-size: 26px;
   color: #254d86;
 }
 
@@ -40,20 +40,20 @@ body {
   display: flex;
   align-items: center;
 
-  width: 350px;
-  height: 45px;
-  margin-top: 20px;
+  width: 300px;
+  height: 44px;
+  margin-top: 30px;
   padding: 0 45px 0 15px;
 
   background-color: white;
-  border: 2px solid #c0bcc173;
+  border: 1.5px solid #c0bcc173;
   box-sizing: border-box;
-  border-radius: 19px;
-  box-shadow: 0px 2px 6px rgba(56, 56, 56, 0.1);
+  border-radius: 18px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.068);
 }
 
 .box:focus-within {
-  box-shadow: 1px 2px 6px rgba(56, 56, 56, 0.22);
+  box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.072);
 }
 
 input {
@@ -73,18 +73,52 @@ input:focus {
 }
 
 .click-action:active {
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.12);
   transform: scale(0.9);
 }
 
-@media only screen and (max-width: 600px) {
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
   .center-content h1 {
-    font-size: 25px;
+    font-size: 33px;
   }
 
   .box {
-    width: 300px;
-    height: 44px;
-    border-radius: 18px;
+    width: 380px;
+    height: 49px;
+    border-radius: 20px;
+    border-width: 1.5px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .center-content h1 {
+    font-size: 45px;
+  }
+
+  .box {
+    width: 500px;
+    height: 54px;
+    border-radius: 22px;
+    border-width: 2px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .center-content h1 {
+    font-size: 36px;
+  }
+
+  .box {
+    width: 410px;
+    height: 48px;
+    border-radius: 20px;
+    border-width: 2px;
   }
 }

@@ -33,7 +33,7 @@ export default {
 <style scoped>
 .account-btn {
   position: fixed;
-  bottom: 2%;
+  bottom: 3%;
   left: 50%;
   transform: translateX(-50%);
 
@@ -51,17 +51,28 @@ export default {
 
 .account-btn span {
   padding-left: 10px;
-  font-size: 14px;
-  color: #979797;
+  font-size: 13px;
+  color: #929292;
 }
 
 .account-btn:active {
   transform: scale(0.8) translateX(-50%);
 }
 
-@media only screen and (max-width: 600px) {
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
   .account-btn span {
-    font-size: 13px;
+    font-size: 16px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .account-btn span {
+    font-size: 14px;
   }
 }
 </style>

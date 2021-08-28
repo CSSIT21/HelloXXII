@@ -17,4 +17,5 @@ app.listen(8081, '0.0.0.0').then(() => {
 	consola.success(`Successfully initialized.`);
 });
 
+console.log('abc ');
 module.exports = app;

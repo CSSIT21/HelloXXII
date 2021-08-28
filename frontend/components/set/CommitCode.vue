@@ -3,16 +3,18 @@
     <span>Create Your Code :</span>
     <div class="box">
       <img src="~/assets/icons/lock.svg" />
-      <input v-model="code" type="text" />
+      <input v-model="commit_code" type="text" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
 export default {
   data: () => ({
-    code: "",
+
   }),
+  computed: {...mapFields(['senpai.commit_code'])}
 };
 </script>
 

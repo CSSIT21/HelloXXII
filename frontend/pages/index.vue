@@ -27,11 +27,7 @@
 
 <script>
 export default {
-  middleware: [
-    ({ redirect }) => {
-      redirect("/login");
-    },
-  ],
+  middleware: ['auth'],
 };
 </script>
 

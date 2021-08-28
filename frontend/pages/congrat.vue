@@ -10,6 +10,7 @@
 <script>
 export default {
   layout: "background_bottom",
+  middleware: ['auth','kohi'],
   data: () => ({
     mentor_name: "Monthara",
   }),

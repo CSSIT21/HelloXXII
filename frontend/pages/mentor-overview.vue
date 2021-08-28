@@ -1,10 +1,11 @@
 <template>
   <div class="middle-page">
     <div class="center-content wrap">
+      <!-- {{ senpai }} -->
       <div class="center">
         <h1>Your Code</h1>
         <div class="box">
-          <p>{{ code }}</p>
+          <p>{{ senpai.commit_code }}</p>
         </div>
       </div>
 
@@ -18,15 +19,23 @@
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
+
 export default {
   layout: "background_corner",
+  middleware: ['auth','senpai'],
   components: {
     OverviewHintsOverlay: () =>
       import("~/components/base/HintsSheetOverlay.vue"),
   },
   data: () => ({
     code: "Food is the most powerful",
+    data: {}
   }),
+  computed: {...mapFields(['senpai'])},
+  created(){
+    this.$store.dispatch('fetchSenpai');
+  }
 };
 </script>
 

@@ -1,15 +1,20 @@
 <template>
   <button @click="logout" class="account-btn">
     <img src="~/assets/icons/logout.svg" />
-    <span>{{ firstname }}</span>
+    <span>{{ profile.name }}</span>
   </button>
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
+
 export default {
   data: () => ({
-    firstname: "Monthara",
+
   }),
+  computed:{
+    ...mapFields(['auth.profile'])
+  },
   methods: {
     logout() {
       this.$swal({
@@ -22,7 +27,7 @@ export default {
         width: 400,
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log("Sign out success!");
+          this.$store.dispatch('logout');
         }
       });
     },

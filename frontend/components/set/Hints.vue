@@ -9,10 +9,13 @@
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
+
 export default {
   data: () => ({
-    hints: ["", "", "", "", ""],
+
   }),
+  computed: {...mapFields(['senpai.hints'])}
 };
 </script>
 

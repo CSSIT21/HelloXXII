@@ -7,7 +7,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  middleware: ['auth','senpai'],
+};
 </script>
 
 <style scoped>

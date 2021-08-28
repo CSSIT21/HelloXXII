@@ -10,6 +10,7 @@
 <script>
 export default {
   layout: "background_corner",
+  middleware: ['auth','kohi'],
 };
 </script>
 

@@ -11,6 +11,7 @@ module.exports = (app, opts, done) => {
 			// * Retrieve variables.
 			const { pairingCode, commitCode } = req.body;
 			const { id, usertype } = jwt.verify(req.cookies.token, jwtConstants.secret);
+			console.log(req.body)
 			
 			// * Check `usertype` permission.
 			if (usertype === 1) {
@@ -42,9 +43,9 @@ module.exports = (app, opts, done) => {
 			
 			// * Check for code previously taken by another one.
 			const duplicated = await Senpai.filter(
-				thinky.r.row('pair').eq(pairingcode)
+				thinky.r.row('pair').eq(pairingCode)
 					.or(
-						thinky.r.row('code').eq(commitcode),
+						thinky.r.row('code').eq(commitCode),
 					),
 			).run();
 			

@@ -36,7 +36,7 @@ module.exports = (app, opts, done) => {
 				return {
 					success: false,
 					error: 4003,
-					error_desc: 'Hint has previously set. To edit hint, please contact administrator.',
+					error_desc: 'Hints have previously been set. To edit them, please contact administrator.',
 				};
 			}
 			

@@ -5,14 +5,18 @@
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
+
 export default {
   data: () => ({
-    success: true,
     error_desc: "The code contains unallowed collation charactor.",
   }),
+  computed: {...mapFields(['senpai', 'senpai.hints'])},
   methods: {
-    submit() {
-      if (this.success) {
+    async submit() {
+      await this.$store.dispatch('setHints',{hints: this.hints});
+      const result = await this.$store.dispatch('setCommitCode', { commitCode: this.senpai.commit_code, pairingCode: 'asdasdasd' });
+      if(result.success){
         this.$swal({
           title: "Completed!",
           text: "Now waiting for your junior :)",
@@ -20,11 +24,11 @@ export default {
           showConfirmButton: false,
           width: 450,
           timer: 2000,
-        }).then(() => this.$router.push({ name: "mentor-overview" }));
+        }).then(() => {this.$router.push("/mentor-overview")});
       } else {
         this.$swal({
           title: "Sorry...",
-          text: this.error_desc,
+          text: result.error_desc,
           icon: "warning",
           confirmButtonColor: "#facea8",
           width: 450,

@@ -21,28 +21,14 @@ export default {
           this.profile = data.profile;
           this.isLoggedIn = true;
           this.route(data.profile.usertype);
-          return;
-        }else{
-          this.$router.push('/login');
-          return;
-        }
+        }else this.$router.push('/login');
       });
   },
   methods:{
     route(usertype){
-      if (1 ==usertype) {
-        this.$router.push('/pair-peer-mentor');
-        return;
-      }if (2 == usertype) {
-        this.$router.push('/mentor-setting');
-        return;
-      }if (3 == usertype){
-        this.$router.push('/mentor-setting');
-        return;
-      }else{
-        this.$router.push('/login');
-        return;
-      }
+      if ([1].includes(usertype)) this.auth.main = '/pair-peer-mentor';
+      if ([2,3].includes(usertype)) this.auth.main = '/pair-peer-mentor';
+      this.$router.push(this.auth.main);
     }
   }
 };

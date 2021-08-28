@@ -47,7 +47,8 @@ const store = () => new Vuex.Store({
         "name": "",
         "usertype": 1
       },
-      isLoggedIn: false
+      isLoggedIn: false,
+      main: '/login'
     }
   },
   getters: {

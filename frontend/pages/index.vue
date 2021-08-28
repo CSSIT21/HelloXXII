@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
+      {{auth}}
       <h1 class="title">frontend</h1>
       <div class="links">
         <a
@@ -26,8 +26,13 @@
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
+
 export default {
-  middleware: ['auth','route'],
+  middleware: ['route'],
+  computed: {
+    ...mapFields(['auth'])
+  }
 };
 </script>
 

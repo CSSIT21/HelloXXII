@@ -31,13 +31,13 @@ export default {
   methods:{
     route(usertype){
       if (1 ==usertype) {
-        this.$router.push('/mentor-setting');
+        this.$router.push('/pair-peer-mentor');
         return;
       }if (2 == usertype) {
         this.$router.push('/mentor-setting');
         return;
       }if (3 == usertype){
-        this.$router.push('/pair-peer-mentor');
+        this.$router.push('/mentor-setting');
         return;
       }else{
         this.$router.push('/login');

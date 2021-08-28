@@ -20,21 +20,27 @@ export default {};
   right: 0%;
   top: 72%;
 
-  background-image: url("~assets/background/web/bottom.svg");
+  background-image: url("~assets/background/phone/bottom.svg");
   background-repeat: no-repeat;
 }
 
-@media only screen and (max-width: 600px) {
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
   .bg-bottom {
-    top: 68%;
-    background-image: url("~assets/background/phone/bottom.svg");
+    top: 64%;
   }
 }
 
-@media only screen and (max-width: 768px) {
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
   .bg-bottom {
-    top: 75%;
-    background-image: url("~assets/background/phone/bottom.svg");
+    top: 70%;
+    opacity: 0.9;
+    background-image: url("~assets/background/web/bottom.svg");
   }
 }
 </style>

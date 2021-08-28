@@ -40,22 +40,10 @@ export default {
 </script>
 
 <style scoped>
+@import "~/assets/css/button.css";
+
 .btn {
-  width: 62px;
-  height: 62px;
-  margin-top: 25px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border: none;
-  border-radius: 50%;
-  background: #ff6584;
-  box-shadow: 1px 2px 3px 0 rgb(175, 175, 175);
-
-  cursor: pointer;
-  transition: all 0.05s;
+  margin: 32px 0 8px 0;
 }
 
 .btn span {

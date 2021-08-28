@@ -42,7 +42,7 @@
 
   width: 300px;
   height: 44px;
-  margin-top: 30px;
+  margin-top: 32px;
   padding: 0 45px 0 15px;
 
   background-color: white;
@@ -54,6 +54,12 @@
 
 .box:focus-within {
   box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.072);
+}
+
+.box.set {
+  width: 280px;
+  height: 40px;
+  border-radius: 16px;
 }
 
 input {
@@ -89,6 +95,13 @@ input:focus {
     border-radius: 20px;
     border-width: 1.5px;
   }
+
+  .box.set {
+    width: 360px;
+    height: 42px;
+    border-radius: 18px;
+    margin-top: 36px;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -104,8 +117,14 @@ input:focus {
     border-width: 2px;
   }
 
+  .box.set {
+    width: 420px;
+    height: 48px;
+    border-radius: 20px;
+  }
+
   input {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
@@ -119,6 +138,16 @@ input:focus {
     width: 410px;
     height: 48px;
     border-radius: 20px;
-    border-width: 2px;
+  }
+
+  .box.set {
+    width: 360px;
+    height: 42px;
+    border-radius: 18px;
+    margin-top: 28px;
+  }
+
+  input {
+    font-size: 15px;
   }
 }

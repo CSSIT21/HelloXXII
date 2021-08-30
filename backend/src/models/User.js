@@ -1,5 +1,5 @@
 const User = thinky.createModel('users', {
-	id: thinky.type.string().uuid(4).optional(),
+	id: thinky.type.string().uuid(4),
 	name: thinky.type.string().uppercase(),
 	nickname: thinky.type.string().alphanum(),
 	email: thinky.type.string().email(),

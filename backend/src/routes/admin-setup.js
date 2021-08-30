@@ -15,7 +15,14 @@ module.exports = (app, opts, done) => {
 		}
 		
 		// * Parse request body and correct default
-		const { senpais } = req.body;
+		const { colors, senpais } = req.body;
+		
+		if (colors.length < senpais.length) {
+			return genericError(new Error('Number of color is not sufficient.'));
+		}
+		
+		// * Randomize colors
+		colors.sort(() => .5 - Math.random());
 		
 		try {
 			// * Clear all data
@@ -26,7 +33,7 @@ module.exports = (app, opts, done) => {
 				thinky.r.table(Kohi.getTableName()).delete().run(),
 			]);
 			
-			// * Insert Senpai
+			// * Insert Senpais
 			await Promise.all(
 				senpais.map(
 					(el) => (async () => {
@@ -34,8 +41,8 @@ module.exports = (app, opts, done) => {
 							id: el.email,
 							pairing_code: null,
 							commit_code: null,
-							hints: null,
-							kohis: null,
+							color_code: colors[0].code,
+							color_name: colors.shift().name,
 						});
 					})(),
 				),

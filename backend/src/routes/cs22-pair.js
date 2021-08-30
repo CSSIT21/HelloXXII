@@ -8,7 +8,7 @@ const Kohi = require('@models/Kohi');
 module.exports = (app, opts, done) => {
 	app.post('/cs22/pair', async (req, res) => {
 		try {
-			const { paringCode } = req.body;
+			const { paring_code } = req.body;
 			const { id, usertype } = jwt.verify(req.cookies.token, jwtConstants.secret);
 			
 			if (usertype !== 1) {
@@ -29,7 +29,7 @@ module.exports = (app, opts, done) => {
 				};
 			}
 			
-			const senpais = await Senpai.filter({ pairing_code: paringCode }).run();
+			const senpais = await Senpai.filter({ pairing_code: paring_code }).run();
 			if (senpais.length === 0) {
 				return {
 					success: false,

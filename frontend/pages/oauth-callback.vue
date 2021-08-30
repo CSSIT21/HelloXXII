@@ -28,7 +28,7 @@ export default {
     async route(usertype){
       if ([1].includes(usertype)){
         const data = await this.$store.dispatch('fetchKohi');
-        if('null' === typeof data.paired){
+        if(null === data.paired){
           this.auth.main = '/pair-peer-mentor';
         }else{
           if(data.found){
@@ -38,7 +38,7 @@ export default {
       }
       if ([2,3].includes(usertype)){
         const data = await this.$store.dispatch('fetchSenpai');
-        if('null' === typeof data.commit_code)
+        if(null === data.commit_code)
           this.auth.main = '/mentor-setcode';
         else
           this.auth.main = '/mentor-overview';

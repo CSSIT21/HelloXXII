@@ -8,9 +8,9 @@ const Kohi = require('@models/Kohi');
 module.exports = (app, opts, done) => {
 	app.post('/cs22/pair', async (req, res) => {
 		try {
-			const { paring_code } = req.body;
+			const { pairing_code } = req.body;
 			const { id, usertype } = jwt.verify(req.cookies.token, jwtConstants.secret);
-			
+
 			if (usertype !== 1) {
 				return {
 					success: false,
@@ -21,7 +21,7 @@ module.exports = (app, opts, done) => {
 			
 			const document = await Kohi.get(id).run();
 			
-			if (document.pair !== null) {
+			if (document.senpai !== null) {
 				return {
 					success: false,
 					error: 4002,
@@ -29,7 +29,7 @@ module.exports = (app, opts, done) => {
 				};
 			}
 			
-			const senpais = await Senpai.filter({ pairing_code: paring_code }).run();
+			const senpais = await Senpai.filter({ pairing_code: pairing_code }).run();
 			if (senpais.length === 0) {
 				return {
 					success: false,
@@ -37,14 +37,13 @@ module.exports = (app, opts, done) => {
 					error_desc: 'Incorrect paring code.',
 				};
 			} else {
-				if (senpais[0].kohis.length() >= 2) {
+				if (senpais[0].kohis.length >= 2) {
 					return {
 						success: false,
 						error: 4004,
 						error_desc: 'The paring code has been reached quota limit.',
 					};
 				}
-				
 				await document.merge({
 					senpai: senpais[0].id,
 				}).save();

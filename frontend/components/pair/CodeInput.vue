@@ -20,7 +20,7 @@ export default {
     async submit() {
       if (!this.pairing_code.trim()) return;
       this.loading = true;
-      const response = await this.$store.dispatch('pair',{pairing_code: this.pairing_code});
+      const response = await this.$store.dispatch('pair',{pairing_code: this.pairing_code.trim()});
       this.loading = false;
       if (response.success) {
         this.$swal({

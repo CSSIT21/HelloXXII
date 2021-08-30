@@ -3,7 +3,13 @@
     <div class="center-content wrap">
       <!-- {{ senpai }} -->
       <div class="center">
-        <h1>Your Code</h1>
+        <h1>Your Paring Code</h1>
+        <div class="box">
+          <p>{{ senpai.pairing_code }}</p>
+        </div>
+      </div>
+      <div class="center">
+        <h1>Your Commit Code</h1>
         <div class="box">
           <p>{{ senpai.commit_code }}</p>
         </div>

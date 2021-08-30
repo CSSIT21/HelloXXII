@@ -18,8 +18,25 @@ export default {
   methods: {
     async submit() {
       this.loading = true;
-      await this.$store.dispatch('setHints',{hints: this.hints});
-
+      const response = await this.$store.dispatch('setHints',{hints: this.hints.map(e => e.trim())});
+      if(response.success){
+        this.$swal({
+          title: "Completed!",
+          text: "Already store your hints!",
+          icon: "success",
+          showConfirmButton: false,
+          width: 450,
+          timer: 2000,
+        }).then(() => {this.$router.push("/mentor-overview")});
+      } else {
+        this.$swal({
+          title: "Sorry...",
+          text: response.error_desc,
+          icon: "warning",
+          confirmButtonColor: "#facea8",
+          width: 450,
+        }).then(() => {this.$router.push("/mentor-overview")});
+      }
       this.loading = false;
     },
   },

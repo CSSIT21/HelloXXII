@@ -22,7 +22,7 @@ export default {
     async submit() {
       if (!this.commit_code.trim()) return;
       this.loading = true;
-      const response = await this.$store.dispatch('commit',{commit_code: this.commit_code});
+      const response = await this.$store.dispatch('commit',{commit_code: this.commit_code.trim()});
       this.loading = false;
       if (response.success) {
         this.$swal({

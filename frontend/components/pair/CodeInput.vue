@@ -4,7 +4,7 @@
       <img src="~/assets/icons/key.svg" />
       <input v-model="pairing_code" type="text" @keypress.enter="submit" />
     </div>
-    <BaseSubmit @submitHandle="submit" />
+    <BaseSubmit @submitHandle="submit" :loading="loading"/>
   </div>
 </template>
 
@@ -14,13 +14,15 @@ import { mapFields } from 'vuex-map-fields';
 export default {
   data: () => ({
     pairing_code: "",
+    loading: false
   }),
   computed: {...mapFields(['hint.pairing_code','kohi'])},
   methods: {
     async submit() {
       if (!this.pairing_code.trim()) return;
+      this.loading = true;
       const response = await this.$store.dispatch('pair',{pairing_code: this.pairing_code});
-
+      this.loading = false;
       if (response.success) {
         this.$swal({
           title: "Paired!",

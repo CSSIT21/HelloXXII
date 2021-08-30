@@ -4,7 +4,7 @@
       <img src="~/assets/icons/search.svg" />
       <input v-model="commit_code" type="text" @keypress.enter="submit" />
     </div>
-    <BaseSubmit @submitHandle="submit" />
+    <BaseSubmit @submitHandle="submit" :loading="loading" />
   </div>
 </template>
 
@@ -12,6 +12,7 @@
 export default {
   data: () => ({
     commit_code: "",
+    loading: false
     // success: true,
     // error: 4007,
     // error_desc: "Mismatch peer mentor. Checking result goes wrong.",
@@ -20,7 +21,9 @@ export default {
   methods: {
     async submit() {
       if (!this.commit_code.trim()) return;
+      this.loading = true;
       const response = await this.$store.dispatch('commit',{commit_code: this.commit_code});
+      this.loading = false;
       if (response.success) {
         this.$swal({
           title: "Great Job!",

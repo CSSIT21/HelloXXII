@@ -1,9 +1,16 @@
 <template>
-  <div class="box click-action" @click="$emit('submitHandle')">Submit</div>
+  <button class="box click-action" @click="$emit('submitHandle')" :disabled="loading">Submit</button>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    loading: {
+      type: Boolean,
+      default: false
+    }
+  }
+};
 </script>
 
 <style scoped>

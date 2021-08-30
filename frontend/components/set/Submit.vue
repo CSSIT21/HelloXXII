@@ -1,5 +1,5 @@
 <template>
-  <button class="btn click-action" @click="submit">
+  <button class="btn click-action" @click="submit" :disabled="loading">
     <span>></span>
   </button>
 </template>
@@ -11,12 +11,17 @@ export default {
   data: () => ({
     error_desc: "The code contains unallowed collation charactor.",
   }),
+  data: ({
+    loading: false
+  }),
   computed: {...mapFields(['senpai', 'senpai.hints'])},
   methods: {
     async submit() {
       await this.$store.dispatch('setHints',{hints: this.hints});
-      const result = await this.$store.dispatch('setCommitCode', { commit_code: this.senpai.commit_code, pairing_code: 'asdasdasd' });
-      if(result.success){
+      this.loading = true;
+      const response = await this.$store.dispatch('setCommitCode', { commit_code: this.senpai.commit_code, pairing_code: 'asdasdasd' });
+      this.loading = false;
+      if(response.success){
         this.$swal({
           title: "Completed!",
           text: "Now waiting for your junior :)",
@@ -28,7 +33,7 @@ export default {
       } else {
         this.$swal({
           title: "Sorry...",
-          text: result.error_desc,
+          text: response.error_desc,
           icon: "warning",
           confirmButtonColor: "#facea8",
           width: 450,

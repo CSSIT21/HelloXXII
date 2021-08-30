@@ -101,7 +101,7 @@ module.exports = (app, opts, done) => {
 					// Case of user is noob, not exist in insane candidate. Then, just create regular record.
 					await Kohi.save({
 						id: document.id,
-						pair: null,
+						senpai: null,
 					});
 				} else {
 					// Case of user is insane, create new insane record with the same data (`coline` field) but change id

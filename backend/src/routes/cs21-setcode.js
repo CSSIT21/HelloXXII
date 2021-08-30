@@ -42,7 +42,7 @@ module.exports = (app, opts, done) => {
 			
 			// * Check for code previously taken by another one.
 			const pairing_duplicated = await Senpai.filter(thinky.r.row('pairing_code').eq(pairing_code)).run();
-			const commit_duplicated = await Senpai.filter(thinky.r.row('pairing_code').eq(pairing_code)).run();
+			const commit_duplicated = await Senpai.filter(thinky.r.row('commit_code').eq(commit_code)).run();
 			
 			if (pairing_duplicated.length > 0) {
 				return {

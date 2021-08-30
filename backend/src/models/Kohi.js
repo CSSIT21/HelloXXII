@@ -1,4 +1,4 @@
-module.exports = thinky.createModel('kohi', {
+module.exports = thinky.createModel('kohis', {
 	id: thinky.type.string().uuid(4),
 	quota: thinky.type.number().default(5),
 	attempts: thinky.type.array().schema(thinky.type.string()).default([]),

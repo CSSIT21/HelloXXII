@@ -1,4 +1,4 @@
-module.exports = thinky.createModel('senpai', {
+module.exports = thinky.createModel('senpais', {
 	id: thinky.type.string(),
 	pairing_code: thinky.type.string().allowNull(true),
 	commit_code: thinky.type.string().allowNull(true),

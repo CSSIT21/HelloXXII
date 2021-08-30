@@ -17,28 +17,10 @@ export default {
   computed: {...mapFields(['senpai', 'senpai.hints'])},
   methods: {
     async submit() {
-      await this.$store.dispatch('setHints',{hints: this.hints});
       this.loading = true;
-      const response = await this.$store.dispatch('setCommitCode', { commit_code: this.senpai.commit_code, pairing_code: 'asdasdasd' });
+      await this.$store.dispatch('setHints',{hints: this.hints});
+
       this.loading = false;
-      if(response.success){
-        this.$swal({
-          title: "Completed!",
-          text: "Now waiting for your junior :)",
-          icon: "success",
-          showConfirmButton: false,
-          width: 450,
-          timer: 2000,
-        }).then(() => {this.$router.push("/mentor-overview")});
-      } else {
-        this.$swal({
-          title: "Sorry...",
-          text: response.error_desc,
-          icon: "warning",
-          confirmButtonColor: "#facea8",
-          width: 450,
-        });
-      }
     },
   },
 };

@@ -10,9 +10,11 @@
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
 export default {
   layout: "background_bottom",
   middleware: ['auth','kohi'],
+  computed: {...mapFields([])},
   data: () => ({
     mentor_name: "Monthara",
   }),

@@ -13,7 +13,6 @@ import { mapFields } from 'vuex-map-fields';
 
 export default {
   data: () => ({
-    pairing_code: "",
     loading: false
   }),
   computed: {...mapFields(['hint.pairing_code','kohi'])},

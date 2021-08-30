@@ -71,6 +71,8 @@ const store = () => new Vuex.Store({
     clear(state){
       state.auth.isLoggedIn = false;
       state.auth.profile = {};
+      localStorage.clear();
+      Cookies.remove('token');
     },
     senpai(state,senpai){
       state.senpai = senpai;
@@ -91,15 +93,19 @@ const store = () => new Vuex.Store({
       window.location.href = '/login';
     },
     fetchSenpai({commit}){
-      this.$axios.get('/cs21/info',{ withCredentials: true }).then(({data}) => {
-        // this.data = data;
-        commit('senpai',data);
+      return new Promise((resolve, reject) => {
+        this.$axios.get('/cs21/info',{ withCredentials: true }).then(({data}) => {
+          commit('senpai',data);
+          resolve(data);
+        }).catch(err => reject(err));
       });
     },
-    fetchKohi({commit}){
-      this.$axios.get('/cs22/info',{ withCredentials: true }).then(({data}) => {
-        // this.data = data;
-        commit('kohi',data);
+    async fetchKohi({commit}){
+      return new Promise((resolve, reject) => {
+        this.$axios.get('/cs22/info',{ withCredentials: true }).then(({data}) => {
+          commit('kohi',data);
+          resolve(data);
+        }).catch(err => reject(err));
       });
     },
     async setCommitCode({commit},data){

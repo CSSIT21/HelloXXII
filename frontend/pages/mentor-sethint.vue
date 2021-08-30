@@ -1,7 +1,6 @@
 <template>
   <div class="from-top">
     <div class="center-content">
-      <SetCommitCode />
       <SetHints />
       <SetSubmit />
     </div>

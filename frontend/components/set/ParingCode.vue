@@ -1,9 +1,9 @@
 <template>
   <div class="center">
-    <span>Create Your Commit Code :</span>
+    <span>Create Your Paring Code :</span>
     <div class="box set">
       <img src="~/assets/icons/lock.svg" />
-      <input v-model="commit_code" type="text" />
+      <input v-model="pairing_code" type="text" />
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
   data: () => ({
 
   }),
-  computed: {...mapFields(['senpai.commit_code'])}
+  computed: {...mapFields(['senpai.pairing_code'])}
 };
 </script>
 

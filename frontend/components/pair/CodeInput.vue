@@ -30,7 +30,7 @@ export default {
           showConfirmButton: false,
           width: 450,
           timer: 2000,
-        }).then(() => this.$router.push({ name: "guess-peer-mentor" }));
+        }).then(() => this.$router.push("/guess-peer-mentor"));
       } else {
         this.$swal({
           title: "Sorry...",

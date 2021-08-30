@@ -38,6 +38,10 @@ export default {
           icon: "warning",
           confirmButtonColor: "#facea8",
           width: 450,
+        }).then(() => {
+          if([4002,4004].includes(response.error)){
+            this.$router.push("/guess-peer-mentor")
+          }
         });
       }
     },

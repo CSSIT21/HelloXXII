@@ -32,9 +32,9 @@ export default {
           showConfirmButton: false,
           width: 450,
           timer: 2000,
-        }).then(() => this.$router.push({ name: "congrat" }));
+        }).then(() => this.$router.push("/congrat"));
       } else {
-        if (this.error === 4007) {
+        if (response.error === 4007) {
           this.$swal({
             title: "Wrong :(",
             text: response.error_desc,
@@ -51,6 +51,10 @@ export default {
             confirmButtonColor: "#facea8",
             focusConfirm: false,
             width: 450,
+          }).then(() => {
+            if([4002,4004].includes(response.error)){
+              this.$router.push("/guess-peer-mentor")
+            }
           });
         }
       }

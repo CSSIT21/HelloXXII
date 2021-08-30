@@ -41,7 +41,7 @@ export default {
         if(null === data.commit_code)
           this.auth.main = '/mentor-setcode';
         else{
-          if(data.hints.length >= 0)
+          if(data.hints.length > 0)
             this.auth.main = '/mentor-overview';
           else
             this.auth.main = "/mentor-sethint";

@@ -58,7 +58,7 @@ module.exports = (app, opts, done) => {
 				quota_remaining: document.quota,
 				quota_used: document.attempts.length,
 				...senpai_info,
-				...document.senpai !== null && senpai_user,
+				...document.found && senpai_user,
 			};
 		} catch (e) {
 			return genericError(e);

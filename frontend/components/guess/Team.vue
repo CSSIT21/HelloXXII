@@ -6,10 +6,13 @@
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
+
 export default {
+  computed: {...mapFields(['kohi.color_name','kohi.color_code'])},
   data: () => ({
-    color_name: "Lemon chiffon",
-    color_code: "#fffacd",
+    // color_name: "Lemon chiffon",
+    // color_code: "#fffacd",
   }),
 };
 </script>

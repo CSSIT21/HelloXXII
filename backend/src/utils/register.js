@@ -31,6 +31,7 @@ module.exports = {
 			'cs21-sethints',
 			'cs22-info',
 			'cs22-pair',
+			'cs22-commit'
 		].forEach((file) => {
 			const module = require(`../routes/${file}.js`);
 			fastify.register(module, { prefix: '/' });

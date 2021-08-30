@@ -22,18 +22,22 @@ module.exports = (app, opts, done) => {
 			const document = await Kohi.get(id).run();
 			
 			// * Fetch info from paired insane record of the user.
-			const info = new Promise((resolve) => {
+			const info = await (new Promise((resolve) => {
 				Senpai.get(document.senpai).run()
 					.then((record) => resolve({
 						color_name: record.color_name,
 						color_code: record.color_code,
 						hints: record.hints.slice(0, document.attempts.length),
 					}))
-					.catch(() => resolve([]));
-			});
-			
+					.catch(() => resolve({
+						color_name: '',
+						color_code: '',
+						hints: []
+					}));
+			}) );
+
 			return {
-				paired: document.senpai,
+				paired: document.senpai || "",
 				found: document.found,
 				quota_remaining: document.quota,
 				quota_used: document.attempts.length,

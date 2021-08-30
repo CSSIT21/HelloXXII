@@ -15,7 +15,7 @@ export default {
   methods: {
     async submit() {
       await this.$store.dispatch('setHints',{hints: this.hints});
-      const result = await this.$store.dispatch('setCommitCode', { commitCode: this.senpai.commit_code, pairingCode: 'asdasdasd' });
+      const result = await this.$store.dispatch('setCommitCode', { commit_code: this.senpai.commit_code, pairing_code: 'asdasdasd' });
       if(result.success){
         this.$swal({
           title: "Completed!",

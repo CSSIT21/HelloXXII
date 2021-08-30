@@ -7,10 +7,11 @@ const Senpai = require('@models/Senpai');
 const Kohi = require('@models/Kohi');
 
 module.exports = (app, opts, done) => {
-	app.get('/cs22/commit', async (req, res) => {
+	app.post('/cs22/commit', async (req, res) => {
+		console.log('HELLO!!')
 		try {
 			// * Retrieve variables.
-			const { commitCode } = req.body;
+			const { commit_code } = req.body;
 			const { id, usertype } = jwt.verify(req.cookies.token, jwtConstants.secret);
 			
 			if (usertype !== 1) {
@@ -40,7 +41,7 @@ module.exports = (app, opts, done) => {
 				};
 			}
 			
-			if (document.attempts.includes(commitCode)) {
+			if (document.attempts.includes(commit_code)) {
 				return {
 					success: false,
 					error: 4005,
@@ -48,7 +49,7 @@ module.exports = (app, opts, done) => {
 				};
 			}
 			
-			const senpais = await Senpai.filter({ code: commitCode }).run();
+			const senpais = await Senpai.filter({ code: commit_code }).run();
 			if (senpais.length === 0) {
 				return {
 					success: false,
@@ -60,7 +61,7 @@ module.exports = (app, opts, done) => {
 			// * Deduct mentor check quota for 1 and add current `commitCode` to attempt list.
 			await document.merge({
 				quota: document.quota - 1,
-				attempts: [...document.attempts, commitCode],
+				attempts: [...document.attempts, commit_code],
 			}).save();
 			
 			if (senpais[0].id !== document.senpai) {

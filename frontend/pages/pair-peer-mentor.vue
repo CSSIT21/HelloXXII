@@ -11,6 +11,9 @@
 export default {
   layout: "background_corner",
   middleware: ['auth','kohi'],
+  created(){
+    this.$store.dispatch('fetchKohi');
+  }
 };
 </script>
 

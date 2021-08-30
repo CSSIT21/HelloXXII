@@ -14,16 +14,16 @@
 import { mapFields } from "vuex-map-fields";
 export default {
   data: () => ({
-    hints: [
-      "Love buffet",
-      "Want to eat chocolate! Do you hear me? gimme some chocolateee :(",
-      " Work from bed",
-      "Love Food",
-      "Watch movie everyday",
-    ],
+    // hints: [
+    //   "Love buffet",
+    //   "Want to eat chocolate! Do you hear me? gimme some chocolateee :(",
+    //   " Work from bed",
+    //   "Love Food",
+    //   "Watch movie everyday",
+    // ],
   }),
   computed: {
-    ...mapFields(["hint.show"]),
+    ...mapFields(["hint.show", "kohi.hints"]),
   },
 };
 </script>

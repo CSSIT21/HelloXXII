@@ -9,17 +9,19 @@
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
+
 export default {
   data: () => ({
     pairing_code: "",
-    success: true,
-    error_desc: "Incorrect paring code.",
   }),
+  computed: {...mapFields(['hint.pairing_code','kohi'])},
   methods: {
-    submit() {
-      if (!this.pairing_code) return;
+    async submit() {
+      if (!this.pairing_code.trim()) return;
+      const response = await this.$store.dispatch('pair',{pairing_code: this.pairing_code});
 
-      if (this.success) {
+      if (response.success) {
         this.$swal({
           title: "Paired!",
           text: "Now you are paired with your peer mentor",
@@ -31,7 +33,7 @@ export default {
       } else {
         this.$swal({
           title: "Sorry...",
-          text: this.error_desc,
+          text: response.error_desc,
           icon: "warning",
           confirmButtonColor: "#facea8",
           width: 450,

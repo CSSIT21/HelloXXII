@@ -8,8 +8,9 @@ const alphanumRegex = /^[a-zA-Z0-9_-]*$/;
 module.exports = (app, opts, done) => {
 	app.post('/cs21/setcode', async (req, res) => {
 		try {
+			
 			// * Retrieve variables.
-			const { pairingCode, commitCode } = req.body;
+			const { pairing_code, commit_code } = req.body;
 			const { id, usertype } = jwt.verify(req.cookies.token, jwtConstants.secret);
 			console.log(req.body)
 			
@@ -23,7 +24,7 @@ module.exports = (app, opts, done) => {
 			}
 			
 			// * Validate retrieved code.
-			if (!alphanumRegex.test(pairingCode) || !alphanumRegex.test(commitCode)) {
+			if (!alphanumRegex.test(pairing_code) || !alphanumRegex.test(commit_code)) {
 				return {
 					success: false,
 					error: 4002,
@@ -43,9 +44,9 @@ module.exports = (app, opts, done) => {
 			
 			// * Check for code previously taken by another one.
 			const duplicated = await Senpai.filter(
-				thinky.r.row('pair').eq(pairingCode)
+				thinky.r.row('pair').eq(pairing_code)
 					.or(
-						thinky.r.row('code').eq(commitCode),
+						thinky.r.row('code').eq(pairing_code),
 					),
 			).run();
 			
@@ -58,8 +59,8 @@ module.exports = (app, opts, done) => {
 			}
 			
 			await document.merge({
-				pairing_code: pairingCode,
-				commit_code: commitCode,
+				pairing_code,
+				commit_code,
 			}).save();
 			
 			return {

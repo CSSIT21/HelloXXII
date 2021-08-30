@@ -12,16 +12,16 @@
 export default {
   data: () => ({
     commit_code: "",
-    success: true,
-    error: 4007,
-    error_desc: "Mismatch peer mentor. Checking result goes wrong.",
-    quota_remaining: 2,
+    // success: true,
+    // error: 4007,
+    // error_desc: "Mismatch peer mentor. Checking result goes wrong.",
+    // quota_remaining: 2,
   }),
   methods: {
-    submit() {
-      if (!this.commit_code) return;
-
-      if (this.success) {
+    async submit() {
+      if (!this.commit_code.trim()) return;
+      const response = await this.$store.dispatch('commit',{commit_code: this.commit_code});
+      if (response.success) {
         this.$swal({
           title: "Great Job!",
           text: "You've found your peer mentor.",
@@ -34,8 +34,8 @@ export default {
         if (this.error === 4007) {
           this.$swal({
             title: "Wrong :(",
-            text: this.error_desc,
-            footer: `You have ${this.quota_remaining} chance left.`,
+            text: response.error_desc,
+            footer: `You have ${response.quota_remaining} chance left.`,
             icon: "error",
             confirmButtonColor: "#f27474",
             width: 450,
@@ -43,7 +43,7 @@ export default {
         } else {
           this.$swal({
             title: "Sorry...",
-            text: this.error_desc,
+            text: response.error_desc,
             icon: "warning",
             confirmButtonColor: "#facea8",
             focusConfirm: false,

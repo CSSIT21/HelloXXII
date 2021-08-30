@@ -30,7 +30,16 @@ const store = () => new Vuex.Store({
   plugins:[vuexPersistedState],
   state: {
     hint: {
-      show: false
+      show: false,
+      pairing_code: ''
+    },
+    kohi: {
+      color_code: "#FFFFFF",
+      color_name: "HEllo World",
+      found: false,
+      hints: [],
+      paired: "",
+      quota_remaining: 5
     },
     senpai: {
       color_code: "",
@@ -65,6 +74,9 @@ const store = () => new Vuex.Store({
     },
     senpai(state,senpai){
       state.senpai = senpai;
+    },
+    kohi(state,kohi){
+      state.kohi = kohi;
     }
   },
   actions: {
@@ -84,6 +96,12 @@ const store = () => new Vuex.Store({
         commit('senpai',data);
       });
     },
+    fetchKohi({commit}){
+      this.$axios.get('/cs22/info',{ withCredentials: true }).then(({data}) => {
+        // this.data = data;
+        commit('kohi',data);
+      });
+    },
     async setCommitCode({commit},data){
       return new Promise((resolve, reject) => {
         this.$axios({ method: 'POST', url: '/cs21/setcode', withCredentials: true, data}).then(({data}) => {
@@ -98,6 +116,20 @@ const store = () => new Vuex.Store({
         }).catch(e => reject(e));
       });
     },
+    async pair({commit}, data){
+      return new Promise((resolve, reject) => {
+        this.$axios({ method: 'POST', url: '/cs22/pair', withCredentials: true, data}).then(({data}) => {
+          resolve(data);
+        }).catch(e => reject(e));
+      });
+    },
+    async commit({commit}, data){
+      return new Promise((resolve, reject) => {
+        this.$axios({ method: 'POST', url: '/cs22/commit', withCredentials: true, data}).then(({data}) => {
+          resolve(data);
+        }).catch(e => reject(e));
+      });
+    }
   }
 });
 

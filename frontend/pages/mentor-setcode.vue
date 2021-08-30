@@ -13,7 +13,7 @@ import { mapFields } from 'vuex-map-fields';
 export default {
   middleware: ['auth','senpai'],
   layout: "background_bottom",
-  computed: {...mapFields(['senpai'])},
+  computed: {...mapFields(['senpai','auth'])},
   data: () => ({
     loading: false
   }),
@@ -30,7 +30,10 @@ export default {
           showConfirmButton: false,
           width: 450,
           timer: 2000,
-        }).then(() => {this.$router.push("/mentor-sethint")});
+        }).then(() => {
+          this.auth.main ="/mentor-sethint";
+          this.$router.push(this.auth.main);
+        });
       } else {
         this.$swal({
           title: "Sorry...",

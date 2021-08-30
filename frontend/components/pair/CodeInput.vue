@@ -40,7 +40,7 @@ export default {
           width: 450,
         }).then(() => {
           if([4002,4004].includes(response.error)){
-            this.auth.main ="/guess-peer-mentor";
+            this.auth.main ="/pair-peer-mentor";
             this.$router.push(this.auth.main);
           }
         });

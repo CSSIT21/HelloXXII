@@ -107,7 +107,7 @@ module.exports = (app, opts, done) => {
 					// Case of user is insane, create new insane record with the same data (`coline` field) but change id
 					// to be uuid of the recently created user record. Then delete the candidate record.
 					await Senpai.save({
-						...Senpai,
+						...senpai,
 						id: document.id,
 					});
 					await senpai.delete();

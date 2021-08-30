@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
 export default {
   data: () => ({
     commit_code: "",
@@ -18,6 +19,7 @@ export default {
     // error_desc: "Mismatch peer mentor. Checking result goes wrong.",
     // quota_remaining: 2,
   }),
+  computed: {...mapFields(['auth'])},
   methods: {
     async submit() {
       if (!this.commit_code.trim()) return;
@@ -32,7 +34,10 @@ export default {
           showConfirmButton: false,
           width: 450,
           timer: 2000,
-        }).then(() => this.$router.push("/congrat"));
+        }).then(() => {
+          this.auth.main = "/congrat";
+          this.$router.push(this.auth.main);
+        });
       } else {
         if (response.error === 4007) {
           this.$swal({
@@ -53,7 +58,8 @@ export default {
             width: 450,
           }).then(() => {
             if([4002,4004].includes(response.error)){
-              this.$router.push("/guess-peer-mentor")
+              this.auth.main = "/guess-peer-mentor";
+              this.$router.push(this.auth.main);
             }
           });
         }

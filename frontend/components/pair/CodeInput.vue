@@ -15,7 +15,7 @@ export default {
   data: () => ({
     loading: false
   }),
-  computed: {...mapFields(['hint.pairing_code','kohi'])},
+  computed: {...mapFields(['hint.pairing_code','kohi','auth'])},
   methods: {
     async submit() {
       if (!this.pairing_code.trim()) return;
@@ -40,7 +40,8 @@ export default {
           width: 450,
         }).then(() => {
           if([4002,4004].includes(response.error)){
-            this.$router.push("/guess-peer-mentor")
+            this.auth.main ="/guess-peer-mentor";
+            this.$router.push(this.auth.main);
           }
         });
       }

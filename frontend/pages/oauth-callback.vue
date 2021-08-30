@@ -40,8 +40,12 @@ export default {
         const data = await this.$store.dispatch('fetchSenpai');
         if(null === data.commit_code)
           this.auth.main = '/mentor-setcode';
-        else
-          this.auth.main = '/mentor-overview';
+        else{
+          if(data.hints.length >= 0)
+            this.auth.main = '/mentor-overview';
+          else
+            this.auth.main = "/mentor-sethint";
+        }
       }
       this.$router.push(this.auth.main);
     }

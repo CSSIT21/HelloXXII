@@ -35,7 +35,7 @@ export default {
           icon: "warning",
           confirmButtonColor: "#facea8",
           width: 450,
-        }).then(() => {this.$router.push("/mentor-overview")});
+        });
       }
       this.loading = false;
     },

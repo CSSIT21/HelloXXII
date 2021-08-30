@@ -2,7 +2,7 @@
 
 ## Setup
 
-Clear all existing data in database and initialize the default value (list of insanes and colines).
+Clear all existing data in database and initialize the default value (list of colors and senpais).
 
 ```
 PATCH http://localhost:8081/admin/setup
@@ -10,30 +10,21 @@ PATCH http://localhost:8081/admin/setup
 
 ```json
 {
-	"colines": [
+	"colors": [
 		{
-			"name": "Chicken",
-			"line_url": "https://line.me/ti/p/Snd7P0wuS3",
-			"icon": "https://storage.googleapis.com/helloxxii/icon/chicken.svg"
-		},
-		{
-			"name": "Owl",
-			"line_url": "https://line.me/ti/p/v2daSsyry7",
-			"icon": "https://storage.googleapis.com/helloxxii/icon/owl.svg"
+			"codes": "#4f5b66",
+			"name": "Space Grey"
 		}
 	],
-	"insanes": [
+	"senpais": [
 		{
-			"email": "bhumjate.s@mail.kmutt.ac.th",
-			"coname": "Chicken"
+			"email": "bhumjate.s@mail.kmutt.ac.th"
 		},
 		{
-			"email": "apisit.mixko@mail.kmutt.ac.th",
-			"coname": "Owl"
+			"email": "apisit.mixko@mail.kmutt.ac.th"
 		},
 		{
-			"email": "sirawit.cssit@mail.kmutt.ac.th",
-			"coname": "Owl"
+			"email": "sirawit.cssit@mail.kmutt.ac.th"
 		}
 	]
 }

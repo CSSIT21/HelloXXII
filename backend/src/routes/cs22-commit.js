@@ -8,7 +8,7 @@ const Kohi = require('@models/Kohi');
 
 module.exports = (app, opts, done) => {
 	app.post('/cs22/commit', async (req, res) => {
-		console.log('HELLO!!')
+		
 		try {
 			// * Retrieve variables.
 			const { commit_code } = req.body;

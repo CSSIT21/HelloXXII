@@ -1,7 +1,7 @@
 module.exports = thinky.createModel('senpai', {
 	id: thinky.type.string(),
-	pairing_code: thinky.type.string().optional(),
-	commit_code: thinky.type.string().optional(),
+	pairing_code: thinky.type.string().allowNull(true),
+	commit_code: thinky.type.string().allowNull(true),
 	color_name: thinky.type.string(),
 	color_code: thinky.type.string(),
 	kohis: thinky.type.array().schema(thinky.type.string()).default([]),

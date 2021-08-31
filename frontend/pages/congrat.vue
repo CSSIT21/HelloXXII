@@ -16,7 +16,7 @@ export default {
   middleware: ['auth','kohi'],
   computed: {...mapFields(['auth','kohi'])},
   data: () => ({
-    mentor_name: "Monthara",
+    mentor_name: "",
   }),
 };
 </script>

@@ -132,7 +132,7 @@ module.exports = (app, opts, done) => {
 					'token',
 					token,
 					{
-						domain: dev ? 'localhost' : 'helloxxii-api.cscc.cf',
+						domain: dev ? 'localhost' : 'helloxxii-api.cscms.me',
 						path: '/',
 					});
 			} else {

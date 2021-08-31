@@ -49,7 +49,7 @@ module.exports = (app, opts, done) => {
 						resolve({
 							senpai_name: record.name,
 							senpai_nickname: record.nickname,
-							senpai_photo: `https://helloxxii-api.cscc.cf/account/photo/${record.id}`,
+							senpai_photo: `https://helloxxii-api.cscms.me/account/photo/${record.id}`,
 						}),
 					)
 					.catch(() =>

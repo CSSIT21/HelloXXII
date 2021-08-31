@@ -5,6 +5,7 @@ const User = require('@models/User');
 const Photo = require('@models/Photo');
 const Senpai = require('@models/Senpai');
 const Kohi = require('@models/Kohi');
+const Color = require('@models/Color');
 
 module.exports = (app, opts, done) => {
 	app.patch('/admin/setup', async (req, res) => {
@@ -31,21 +32,22 @@ module.exports = (app, opts, done) => {
 				thinky.r.table(Photo.getTableName()).delete().run(),
 				thinky.r.table(Senpai.getTableName()).delete().run(),
 				thinky.r.table(Kohi.getTableName()).delete().run(),
+				thinky.r.table(Color.getTableName()).delete().run(),
 			]);
 			
-			// * Insert Senpais
-			await Promise.all(
-				senpais.map(
-					(el) => (async () => {
-						await Senpai.save({
+			// * Insert data
+			await Promise.all([
+					...senpais.map(
+						(el) => Senpai.save({
 							id: el.email,
 							pairing_code: null,
 							commit_code: null,
-							color_code: colors[0].code,
-							color_name: colors.shift().name,
-						});
-					})(),
-				),
+						}),
+					),
+					...colors.map(
+						(el) => Color.save(el),
+					),
+				],
 			);
 			
 			// for (const el of insanes) {

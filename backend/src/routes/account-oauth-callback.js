@@ -8,6 +8,7 @@ const User = require('@models/User');
 const Photo = require('@models/Photo');
 const Senpai = require('@models/Senpai');
 const Kohi = require('@models/Kohi');
+const Color = require('@models/Color');
 
 module.exports = (app, opts, done) => {
 	app.get('/account/oauth-callback', async (req, res) => {
@@ -99,8 +100,12 @@ module.exports = (app, opts, done) => {
 				
 				if (senpai === false) {
 					// Case of user is noob, not exist in insane candidate. Then, just create regular record.
+					const [color] = await Color.limit(1).run();
+					await color.delete();
 					await Kohi.save({
 						id: document.id,
+						color_name: color.name,
+						color_code: color.code,
 						senpai: null,
 					});
 				} else {

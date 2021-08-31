@@ -2,8 +2,6 @@ module.exports = thinky.createModel('senpais', {
 	id: thinky.type.string(),
 	pairing_code: thinky.type.string().allowNull(true),
 	commit_code: thinky.type.string().allowNull(true),
-	color_name: thinky.type.string(),
-	color_code: thinky.type.string(),
 	kohis: thinky.type.array().schema(thinky.type.string()).default([]),
 	hints: thinky.type.array().schema(thinky.type.string()).default([]),
 }, {

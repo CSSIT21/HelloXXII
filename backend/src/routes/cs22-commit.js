@@ -8,7 +8,6 @@ const Kohi = require('@models/Kohi');
 
 module.exports = (app, opts, done) => {
 	app.post('/cs22/commit', async (req, res) => {
-		
 		try {
 			// * Retrieve variables.
 			const { commit_code } = req.body;
@@ -49,7 +48,7 @@ module.exports = (app, opts, done) => {
 				};
 			}
 			
-			const senpais = await Senpai.filter({ code: commit_code }).run();
+			const senpais = await Senpai.filter({ commit_code: commit_code }).run();
 			if (senpais.length === 0) {
 				return {
 					success: false,

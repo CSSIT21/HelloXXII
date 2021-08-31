@@ -2,27 +2,30 @@
   <div class="from-top">
     <div class="center-content">
       <SetParingCode />
-      <SetCommitCode  style="margin-top: 1.5rem;" />
-      <BaseSubmit @submitHandle="submit" :loading="loading"/>
+      <SetCommitCode style="margin-top: 2.7rem" />
+      <BaseSubmit @submitHandle="submit" :loading="loading" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapFields } from 'vuex-map-fields';
+import { mapFields } from "vuex-map-fields";
 export default {
-  middleware: ['auth','senpai'],
+  middleware: ["auth", "senpai"],
   layout: "background_bottom",
-  computed: {...mapFields(['senpai','auth'])},
+  computed: { ...mapFields(["senpai", "auth"]) },
   data: () => ({
-    loading: false
+    loading: false,
   }),
   methods: {
     async submit() {
-      if(['',null].includes(this.senpai.pairing_code) || ['',null].includes(this.senpai.commit_code) ) {
+      if (
+        ["", null].includes(this.senpai.pairing_code) ||
+        ["", null].includes(this.senpai.commit_code)
+      ) {
         this.$swal({
           title: "Sorry...",
-          text: 'Please enter pairingCode or commitCode!',
+          text: "Please enter pairingCode or commitCode!",
           icon: "error",
           confirmButtonColor: "#facea8",
           width: 450,
@@ -31,9 +34,12 @@ export default {
       }
 
       this.loading = true;
-      const response = await this.$store.dispatch('setCommitCode', { commit_code: this.senpai.commit_code, pairing_code: this.senpai.pairing_code });
+      const response = await this.$store.dispatch("setCommitCode", {
+        commit_code: this.senpai.commit_code,
+        pairing_code: this.senpai.pairing_code,
+      });
       this.loading = false;
-      if(response.success){
+      if (response.success) {
         this.$swal({
           title: "Completed!",
           text: "Now waiting for your junior :)",
@@ -42,7 +48,7 @@ export default {
           width: 450,
           timer: 2000,
         }).then(() => {
-          this.auth.main ="/mentor-sethint";
+          this.auth.main = "/mentor-sethint";
           this.$router.push(this.auth.main);
         });
       } else {
@@ -53,14 +59,14 @@ export default {
           confirmButtonColor: "#facea8",
           width: 450,
         }).then(() => {
-          if([4003].includes(response.error)){
-            this.auth.main ="/mentor-sethint";
+          if ([4003].includes(response.error)) {
+            this.auth.main = "/mentor-sethint";
             this.$router.push(this.auth.main);
           }
         });
       }
     },
-  }
+  },
 };
 </script>
 
@@ -71,8 +77,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 88vh;
-  min-height: 716px;
+  height: 70vh;
+  min-height: 400px;
 }
 
 .center-content {

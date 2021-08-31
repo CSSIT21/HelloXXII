@@ -25,20 +25,20 @@
 </template>
 
 <script>
-import { mapFields } from 'vuex-map-fields';
+import { mapFields } from "vuex-map-fields";
 
 export default {
   layout: "background_corner",
-  middleware: ['auth','senpai'],
+  middleware: ["auth", "senpai"],
   components: {
     OverviewHintsOverlay: () =>
       import("~/components/base/HintsSheetOverlay.vue"),
   },
   data: () => ({
     code: "Food is the most powerful",
-    data: {}
+    data: {},
   }),
-  computed: {...mapFields(['senpai','auth'])},
+  computed: { ...mapFields(["senpai", "auth"]) },
 };
 </script>
 
@@ -46,7 +46,7 @@ export default {
 @import "~/assets/css/wrap-center-content.css";
 
 .center-content {
-  margin-top: 24px;
+  margin-top: 28px;
 }
 
 .center-content > div {
@@ -73,6 +73,10 @@ export default {
   color: rgb(139, 139, 139);
 }
 
+.center h1 {
+  font-size: 18px;
+}
+
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .box {
@@ -82,6 +86,10 @@ export default {
 
   .center-content {
     margin-top: 40px;
+  }
+
+  .center h1 {
+    font-size: 20px;
   }
 }
 
@@ -95,6 +103,10 @@ export default {
   .center-content {
     margin-top: 70px;
   }
+
+  .center h1 {
+    font-size: 24px;
+  }
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
@@ -106,6 +118,10 @@ export default {
 
   .center-content {
     margin-top: 50px;
+  }
+
+  .center h1 {
+    font-size: 24px;
   }
 }
 </style>

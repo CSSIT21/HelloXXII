@@ -9,12 +9,10 @@
 </template>
 
 <script>
-import { mapFields } from 'vuex-map-fields';
+import { mapFields } from "vuex-map-fields";
 export default {
-  data: () => ({
-
-  }),
-  computed: {...mapFields(['senpai.pairing_code'])}
+  data: () => ({}),
+  computed: { ...mapFields(["senpai.pairing_code"]) },
 };
 </script>
 
@@ -26,6 +24,9 @@ export default {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+  .center span {
+    font-size: 18px;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -38,7 +39,7 @@ export default {
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   .center span {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 </style>

@@ -61,7 +61,7 @@ export default {
             height: 56px;
             border-radius: 32px;
             margin: 8px;
-            background-size: cover;
+            background-size: cover !important;
         }
 
         .text {

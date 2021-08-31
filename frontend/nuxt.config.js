@@ -21,7 +21,7 @@ export default {
     link: [{
       rel: 'icon',
       type: 'image/svg',
-      href: '/favicon2.svg'
+      href: '/favicon.svg'
     }
     ]
   },

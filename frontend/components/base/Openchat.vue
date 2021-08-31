@@ -1,19 +1,27 @@
 <template>
-  <button class="box click-action" @click="$emit('submitHandle')" :disabled="loading">Submit</button>
+  <a class="box click-action" target="_blank" :href="link" @click="$emit('submitHandle')" :disabled="loading">Openchat</a>
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
 export default {
   props: {
     loading: {
       type: Boolean,
       default: false
+    },
+    link: {
+      type: String,
+      required: true,
+      default: ""
     }
-  }
+  },
+  computed: {...mapFields(['auth','kohi'])},
 };
 </script>
 
 <style scoped>
+
 .box {
   justify-content: center;
 
@@ -25,8 +33,10 @@ export default {
   font-size: 14.5px;
   font-weight: 600;
   border-radius: 16px;
-  color: #254d86;
-
+  color: #fff;
+  background-color: #58BF52;
+background-image: linear-gradient(135deg, #5fd9db 0%,  #58BF52  100%);
+  border: none;
   cursor: pointer;
   transition: all 0.05s;
 }

@@ -28,7 +28,7 @@ export default {
     async route(usertype){
       if ([1].includes(usertype)){
         const data = await this.$store.dispatch('fetchKohi');
-        if(null === data.paired){
+        if(null === data.senpai){
           this.auth.main = '/pair-peer-mentor';
         }else{
           if(data.found){

@@ -4,6 +4,8 @@
       <h1>Guess Peer Mentor</h1>
       <GuessInput />
       <GuessTeam />
+      <BaseOpenchat @submitHandle="submit" :link="kohi.openchat"/>
+      <!-- <BaseOpenchat @submitHandle="submit"/> -->
     </div>
     <GuessHints />
     <GuessHintsOverlay />
@@ -11,14 +13,16 @@
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields';
 export default {
   layout: "background_corner",
   middleware: ['auth','kohi'],
   components: {
     GuessHintsOverlay: () => import("~/components/base/HintsSheetOverlay.vue"),
   },
-  async created(){
-
+  computed: {...mapFields(['kohi','auth'])},
+  methods: {
+    submit(){}
   }
 };
 </script>
@@ -26,6 +30,9 @@ export default {
 <style scoped>
 @import "~/assets/css/wrap-center-content.css";
 
+.middle-page{
+  margin-top: -70px;
+}
 .center-content {
   margin-top: 144px;
 }

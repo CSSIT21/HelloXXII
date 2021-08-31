@@ -5,9 +5,9 @@
       <input v-model="commit_code" type="text" @keypress.enter="submit" />
     </div>
     <BaseSubmit @submitHandle="submit" :loading="loading" />
+
   </div>
 </template>
-
 <script>
 import { mapFields } from 'vuex-map-fields';
 export default {

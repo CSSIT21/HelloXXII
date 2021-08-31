@@ -38,12 +38,11 @@ const store = () => new Vuex.Store({
       color_name: "HEllo World",
       found: false,
       hints: [],
-      paired: "",
-      quota_remaining: 5
+      senpai: null,
+      quota_remaining: 5,
+      openchat: ""
     },
     senpai: {
-      color_code: "",
-      color_name: "",
       commit_code: "",
       hints: [],
       id: "",

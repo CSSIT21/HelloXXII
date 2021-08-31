@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import { mapFields } from 'vuex-map-fields';
+import { mapFields } from "vuex-map-fields";
 export default {
   layout: "background_bottom",
-  middleware: ['auth','kohi'],
-  computed: {...mapFields(['auth','kohi'])},
+  middleware: ["auth", "kohi"],
+  computed: { ...mapFields(["auth", "kohi"]) },
   data: () => ({
     mentor_name: "",
   }),
@@ -23,7 +23,7 @@ export default {
 
 <style scoped>
 .from-top {
-  height: 74vh;
+  height: 64vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,6 +96,10 @@ export default {
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+  .from-top {
+    height: 78vh;
+  }
+
   .center-content h2 {
     font-size: 50px;
   }

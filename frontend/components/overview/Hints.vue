@@ -6,7 +6,7 @@
     <BaseHintsSheet :hints="hints">
     <b v-if="kohis.length > 0">Your peer mentor(s):</b>
     <div class="root" v-for="kohi in kohis" :key="kohi.id">
-        <div class="circle" :style="kohi.color_code"></div>
+        <div class="circle" :style="{background: kohi.color_code}"></div>
         <div style="display: flex; flex-direction: column; justify-content: center;">
             <h4 class="text" style="color: rgba(0, 0, 0, 0.87);">{{kohi.name}}</h4>
             <h4 class="text" style="color: rgba(0, 0, 0, 0.54);">{{kohi.color_name}}</h4>

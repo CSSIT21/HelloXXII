@@ -26,12 +26,13 @@ module.exports = (app, opts, done) => {
 			const document = await Kohi.get(id).run();
 			
 			// * Fetch info from paired senpai record of the user.
-			const senpai_hint = await new Promise((resolve) => {
+			const senpai_info = await new Promise((resolve) => {
 				Senpai.get(document.senpai)
 					.run()
 					.then((record) =>
 						resolve({
 							hints: record.hints.slice(0, document.attempts.length + 1),
+							openchat: record.openchat,
 						}),
 					)
 					.catch(() =>
@@ -62,13 +63,8 @@ module.exports = (app, opts, done) => {
 			
 			return {
 				success: true,
-				paired: document.senpai,
-				found: document.found,
-				quota_remaining: document.quota,
-				quota_used: document.attempts.length,
-				color_name: document.color_name,
-				color_code: document.color_code,
-				...senpai_hint,
+				...document,
+				...senpai_info,
 				...document.found && senpai_user,
 			};
 		} catch (e) {

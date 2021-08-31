@@ -42,6 +42,7 @@ module.exports = (app, opts, done) => {
 							id: el.email,
 							pairing_code: null,
 							commit_code: null,
+							openchat: el.openchat,
 						}),
 					),
 					...colors.map(

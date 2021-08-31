@@ -4,6 +4,7 @@ module.exports = thinky.createModel('senpais', {
 	commit_code: thinky.type.string().allowNull(true),
 	kohis: thinky.type.array().schema(thinky.type.string()).default([]),
 	hints: thinky.type.array().schema(thinky.type.string()).default([]),
+	openchat: thinky.type.string(),
 }, {
 	enforce_missing: true,
 	enforce_extra: 'remove',

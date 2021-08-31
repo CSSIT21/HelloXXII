@@ -3,7 +3,7 @@ const jwtConstants = require('../constants/jwt.json');
 const { genericError, axiosError } = require('@utils/response');
 const Senpai = require('@models/Senpai');
 
-const alphanumRegex = /^[a-zA-Z0-9_-]*$/;
+const alphanumRegex = /^[a-zA-Z0-9\u0E00-\u0E7F_-]*$/;
 
 module.exports = (app, opts, done) => {
 	app.post('/cs21/setcode', async (req, res) => {

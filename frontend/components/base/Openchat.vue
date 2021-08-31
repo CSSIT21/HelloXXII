@@ -1,27 +1,33 @@
 <template>
-  <a class="box click-action" target="_blank" :href="link" @click="$emit('submitHandle')" :disabled="loading">Openchat</a>
+  <a
+    class="box click-action"
+    target="_blank"
+    :href="link"
+    @click="$emit('submitHandle')"
+    :disabled="loading"
+    >Openchat</a
+  >
 </template>
 
 <script>
-import { mapFields } from 'vuex-map-fields';
+import { mapFields } from "vuex-map-fields";
 export default {
   props: {
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     link: {
       type: String,
       required: true,
-      default: ""
-    }
+      default: "",
+    },
   },
-  computed: {...mapFields(['auth','kohi'])},
+  computed: { ...mapFields(["auth", "kohi"]) },
 };
 </script>
 
 <style scoped>
-
 .box {
   justify-content: center;
 
@@ -34,8 +40,8 @@ export default {
   font-weight: 600;
   border-radius: 16px;
   color: #fff;
-  background-color: #58BF52;
-background-image: linear-gradient(135deg, #5fd9db 0%,  #58BF52  100%);
+  background-color: #58bf52;
+  background-image: linear-gradient(135deg, #8cf0eb 10%, #00e66b 90%);
   border: none;
   cursor: pointer;
   transition: all 0.05s;

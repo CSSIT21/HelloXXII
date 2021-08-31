@@ -57,7 +57,11 @@ export default {
             focusConfirm: false,
             width: 450,
           }).then(() => {
-            if([4002,4004].includes(response.error)){
+            if([4002].includes(response.error)){
+              this.auth.main = "/congrat";
+              this.$router.push(this.auth.main);
+            }
+            if([4004].includes(response.error)){
               this.auth.main = "/guess-peer-mentor";
               this.$router.push(this.auth.main);
             }

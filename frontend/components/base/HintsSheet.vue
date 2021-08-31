@@ -1,5 +1,6 @@
 <template>
   <div :class="{ 'bottom-sheet': true, active: show }" @click="show = false">
+    <slot></slot>
     <div v-for="(hint, index) in hints" :key="index">
       <span>{{ index + 1 }}.</span>
       <span>{{ hint }}</span>

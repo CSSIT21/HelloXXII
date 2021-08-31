@@ -16,7 +16,7 @@
       </div>
 
       <div class="center">
-        <h1>Your Hints</h1>
+        <h1>Your Information</h1>
         <OverviewHints />
         <OverviewHintsOverlay />
       </div>

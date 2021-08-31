@@ -18,9 +18,14 @@ module.exports = (app, opts, done) => {
 			}
 			
 			const document = await Senpai.get(id);
+			const kohis = await Promise.all(document.kohis.map(id => (async () => {
+				const [kohi,user] = Promise.all([Kohi.get(id).run(),User.get(id).run()]);
+				return {...kohi,...user};
+			})()));
 			return {
 				success: true,
 				...document,
+				kohis
 			};
 		} catch (e) {
 			return genericError(e);

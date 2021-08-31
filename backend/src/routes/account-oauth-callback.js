@@ -158,12 +158,12 @@ module.exports = (app, opts, done) => {
 					'token',
 					token,
 					{
-						domain: dev ? 'localhost' : 'helloxxii-api.cscc.cf',
+						domain: dev ? 'localhost' : 'helloxxii-api.cscms.me',
 						path: '/',
 					});
 			}
 			
-			return res.redirect(dev ? 'http://localhost:8080/oauth-callback' : 'https://helloxxii.cscc.cf/oauth-callback');
+			return res.redirect(dev ? 'http://localhost:8080/oauth-callback' : 'https://helloxxii.cscms.me/oauth-callback');
 		} catch (e) {
 			return genericError(e);
 		}

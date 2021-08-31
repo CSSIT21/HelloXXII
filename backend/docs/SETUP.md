@@ -292,7 +292,7 @@ The initialization data, gathered by Mixko and Floaty.
 			"coname": "8"
 		},
 		{
-			"email": "sirawit.cssit@mail.kmutt.ac.th",
+			"email": "sirawit.cssit1@mail.kmutt.ac.th",
 			"coname": "8"
 		},
 		{
@@ -348,7 +348,7 @@ The initialization data, gathered by Mixko and Floaty.
 			"coname": "11"
 		},
 		{
-			"email": "apisit.mixko@mail.kmutt.ac.th",
+			"email": "apisit.mixko1@mail.kmutt.ac.th",
 			"coname": "11"
 		},
 		{
@@ -372,7 +372,7 @@ The initialization data, gathered by Mixko and Floaty.
 			"coname": "12"
 		},
 		{
-			"email": "bhumjate.s@mail.kmutt.ac.th",
+			"email": "bhumjate.s1@mail.kmutt.ac.th",
 			"coname": "13"
 		},
 		{

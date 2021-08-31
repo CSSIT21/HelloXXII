@@ -3,6 +3,8 @@ const jwtConstants = require('../constants/jwt.json');
 const { url } = require('@utils/environment');
 const { genericError, axiosError } = require('@utils/response');
 const Senpai = require('@models/Senpai');
+const Kohi = require('@models/Kohi');
+const User = require('@models/User');
 
 module.exports = (app, opts, done) => {
 	app.get('/cs21/info', async (req, res) => {
@@ -19,13 +21,14 @@ module.exports = (app, opts, done) => {
 			
 			const document = await Senpai.get(id);
 			const kohis = await Promise.all(document.kohis.map(id => (async () => {
-				const [kohi,user] = Promise.all([Kohi.get(id).run(),User.get(id).run()]);
-				return {...kohi,...user};
+				const [kohi, user] = await Promise.all([Kohi.get(id).run(), User.get(id).run()]);
+				return { ...kohi, ...user };
 			})()));
+			
 			return {
 				success: true,
 				...document,
-				kohis
+				kohis,
 			};
 		} catch (e) {
 			return genericError(e);

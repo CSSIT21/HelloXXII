@@ -59,7 +59,6 @@ export default {
         .circle {
             width: 56px;
             height: 56px;
-            background-color: sandybrown;
             border-radius: 32px;
             margin: 8px;
         }

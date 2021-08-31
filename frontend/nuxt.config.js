@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'frontend',
+    title: 'HelloXXII',
     meta: [{
       charset: 'utf-8'
     },
@@ -54,7 +54,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // baseURL: 'https://helloxxii-api.cscc.cf',
-    baseURL: (process.env.NODE_ENV || 'development') === 'development' ? 'http://localhost:8081' : 'https://helloxxii-api.cscc.cf'
+    baseURL: (process.env.NODE_ENV || 'development') === 'development' ? 'http://localhost:8081' : 'https://helloxxii-api.cscms.me'
   },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

@@ -47,7 +47,7 @@ export default {
             icon: "error",
             confirmButtonColor: "#f27474",
             width: 450,
-          });
+          }).then(() => this.$store.dispatch('fetchKohi'));
         } else {
           this.$swal({
             title: "Sorry...",

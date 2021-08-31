@@ -61,6 +61,10 @@ export default {
               this.auth.main = "/guess-peer-mentor";
               this.$router.push(this.auth.main);
             }
+            if([3001,3011,3021,3022].includes(response.error)){
+              this.auth.main ="/logout";
+              this.$router.push(this.auth.main);
+            }
           });
         }
       }

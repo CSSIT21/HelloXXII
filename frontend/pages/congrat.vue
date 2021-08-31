@@ -3,7 +3,7 @@
     <div class="center-content">
       <img src="~/assets/images/congrat-logo.svg" />
       <h2>CONGRAT!</h2>
-      <h3>"{{ mentor_name }}"</h3>
+      <h3>"{{ kohi.senpai_name }}"</h3>
       <span>is your peer mentor</span>
     </div>
   </div>
@@ -14,7 +14,7 @@ import { mapFields } from 'vuex-map-fields';
 export default {
   layout: "background_bottom",
   middleware: ['auth','kohi'],
-  computed: {...mapFields([])},
+  computed: {...mapFields(['auth','kohi'])},
   data: () => ({
     mentor_name: "Monthara",
   }),

@@ -13,12 +13,12 @@
 <script>
 export default {
   layout: "background_corner",
-  middleware: ['auth','kohi','found-senpai'],
+  middleware: ['auth','kohi'],
   components: {
     GuessHintsOverlay: () => import("~/components/base/HintsSheetOverlay.vue"),
   },
-  created(){
-    this.$store.dispatch('fetchKohi');
+  async created(){
+
   }
 };
 </script>

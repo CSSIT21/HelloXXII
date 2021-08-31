@@ -13,7 +13,7 @@ export default {
 
   }),
   computed:{
-    ...mapFields(['auth.profile'])
+    ...mapFields(['auth.profile','auth'])
   },
   methods: {
     logout() {
@@ -27,7 +27,9 @@ export default {
         width: 400,
       }).then((result) => {
         if (result.isConfirmed) {
-          this.$store.dispatch('logout');
+            this.auth.main ="/logout";
+            this.$router.push(this.auth.main);
+          // this.$store.dispatch('logout');
         }
       });
     },

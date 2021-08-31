@@ -38,10 +38,7 @@ export default {
     code: "Food is the most powerful",
     data: {}
   }),
-  computed: {...mapFields(['senpai'])},
-  created(){
-    this.$store.dispatch('fetchSenpai');
-  }
+  computed: {...mapFields(['senpai','auth'])},
 };
 </script>
 

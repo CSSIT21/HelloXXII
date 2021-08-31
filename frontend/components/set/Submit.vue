@@ -11,10 +11,10 @@ export default {
   data: () => ({
     error_desc: "The code contains unallowed collation charactor.",
   }),
-  data: ({
+  data: () => ({
     loading: false
   }),
-  computed: {...mapFields(['senpai', 'senpai.hints'])},
+  computed: {...mapFields(['senpai', 'senpai.hints','auth'])},
   methods: {
     async submit() {
       this.loading = true;
@@ -35,6 +35,15 @@ export default {
           icon: "warning",
           confirmButtonColor: "#facea8",
           width: 450,
+        }).then(() => {
+          if([4003].includes(response.error)){
+            this.auth.main ="/mentor-overview";
+            this.$router.push(this.auth.main);
+          }
+          if([3001,3011,3021,3022].includes(response.error)){
+            this.auth.main ="/logout";
+            this.$router.push(this.auth.main);
+          }
         });
       }
       this.loading = false;

@@ -19,6 +19,17 @@ export default {
   }),
   methods: {
     async submit() {
+      if(['',null].includes(this.senpai.pairing_code) || ['',null].includes(this.senpai.commit_code) ) {
+        this.$swal({
+          title: "Sorry...",
+          text: 'Please enter pairingCode or commitCode!',
+          icon: "error",
+          confirmButtonColor: "#facea8",
+          width: 450,
+        });
+        return;
+      }
+
       this.loading = true;
       const response = await this.$store.dispatch('setCommitCode', { commit_code: this.senpai.commit_code, pairing_code: this.senpai.pairing_code });
       this.loading = false;
@@ -41,6 +52,11 @@ export default {
           icon: "warning",
           confirmButtonColor: "#facea8",
           width: 450,
+        }).then(() => {
+          if([4003].includes(response.error)){
+            this.auth.main ="/mentor-sethint";
+            this.$router.push(this.auth.main);
+          }
         });
       }
     },

@@ -6,7 +6,7 @@
     <BaseHintsSheet :hints="hints">
     <b v-if="kohis.length > 0">Your peer mentor(s):</b>
     <div class="root" v-for="kohi in kohis" :key="kohi.id">
-        <div class="circle" :style="{'background-size': 'cover',background: `url('https://helloxxii-api.cscms.me/account/photo/${kohi.id}')`,border: `5px solid ${kohi.color_code}`}"></div>
+        <div class="circle" :style="{background: `url('https://helloxxii-api.cscms.me/account/photo/${kohi.id}')`,border: `5px solid ${kohi.color_code}`}"></div>
         <div style="display: flex; flex-direction: column; justify-content: center;">
             <h4 class="text" style="color: rgba(0, 0, 0, 0.87);">{{kohi.name}}</h4>
             <h4 class="text" style="color: rgba(0, 0, 0, 0.54);">{{kohi.color_name}}</h4>
@@ -61,6 +61,7 @@ export default {
             height: 56px;
             border-radius: 32px;
             margin: 8px;
+            background-size: cover;
         }
 
         .text {

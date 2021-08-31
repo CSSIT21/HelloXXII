@@ -9,13 +9,11 @@
 </template>
 
 <script>
-import { mapFields } from 'vuex-map-fields';
+import { mapFields } from "vuex-map-fields";
 
 export default {
-  data: () => ({
-
-  }),
-  computed: {...mapFields(['senpai.hints'])}
+  data: () => ({}),
+  computed: { ...mapFields(["senpai.hints"]) },
 };
 </script>
 
@@ -33,6 +31,11 @@ export default {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+  .box span {
+    padding-right: 5px;
+    font-size: 18px;
+    color: #fda8b9;
+  }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -45,7 +48,7 @@ export default {
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   .center span {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 </style>

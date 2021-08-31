@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  middleware: ['auth','senpai'],
+  middleware: ["auth", "senpai"],
   layout: "background_bottom",
 };
 </script>
@@ -21,8 +21,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 88vh;
-  min-height: 716px;
+  height: 72vh;
+  min-height: 420px;
 }
 
 .center-content {
@@ -48,6 +48,11 @@ export default {
 @media (min-width: 1200px) {
   .center-content {
     max-width: 500px;
+  }
+
+  .from-top {
+    height: 80vh;
+    min-height: 450px;
   }
 }
 </style>

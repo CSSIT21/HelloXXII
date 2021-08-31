@@ -18,7 +18,7 @@ export default {};
   position: fixed;
   z-index: -100;
   right: 0%;
-  top: 72%;
+  top: 64%;
 
   background-image: url("~assets/background/phone/bottom.svg");
   background-repeat: no-repeat;

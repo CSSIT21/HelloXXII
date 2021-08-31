@@ -43,7 +43,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import "~/assets/css/button.css";
 .root {
             border-radius: 12px;

@@ -85,8 +85,8 @@ module.exports = (app, opts, done) => {
 				
 				// * Create new User record, and fetch back document which store generated id as `document.id`.
 				const document = await User.save({
-					name: graph.displayName,
-					nickname: graph.displayName.split(' ')[0],
+					name: graph.displayName.toUpperCase(),
+					nickname: graph.displayName.split(' ')[0].toUpperCase(),
 					email: graph.mail,
 					usertype: senpai === false ? 1 : 2,
 				});

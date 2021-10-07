@@ -137,12 +137,25 @@ module.exports = (app, opts, done) => {
 					});
 			} else {
 				// * Update profile photo for existing user from retrieved Graph profile photo.
-				const document = await Photo.get(users[0].id).run();
-				await document.merge({
-						mime: mime,
-						photo: thinky.r.binary(photo),
-					})
-					.save();
+				await new Promise((resolve) => {
+					Photo.get(users[0].id).run()
+						.then((document) => {
+							document.merge({
+									mime: mime,
+									photo: thinky.r.binary(photo),
+								})
+								.save()
+								.then(() => resolve());
+						})
+						.catch(() => {
+							Photo.save({
+									id: document.id,
+									mime: mime,
+									photo: thinky.r.binary(photo),
+								})
+								.then(() => resolve());
+						});
+				});
 				
 				// * Sign JWT from existing database record.
 				const token = jwt.sign(

@@ -149,7 +149,7 @@ module.exports = (app, opts, done) => {
 						})
 						.catch(() => {
 							Photo.save({
-									id: document.id,
+									id: users[0].id,
 									mime: mime,
 									photo: thinky.r.binary(photo),
 								})

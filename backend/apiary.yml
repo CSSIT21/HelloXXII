@@ -1,0 +1,557 @@
+FORMAT: 1A
+HOST: https://dp-helloxxii-api.bsthun.com/
+
+# HelloXXII
+
+The API reference for **HelloXXII: CS peer mentor** web applicaion.
+
+### Generic response codes
+
+| Error code | Description |
+|------------|-------------|
+| 1xxx       | Success                                                                 |
+| 2xxx       | Reserved response code. *(unused yet)*                                  |
+| 3001       | Unhandled/unknown server error.                                         |
+| 3011       | Database connection-related error.                                      |
+| 3012       | Database query/action-related error.                                    |
+| 3021       | Unable to parse request body.                                           |
+| 3022       | Unable to authorization token.                                          |
+| 3031       | Third-party API generic error.                                          |
+| 3032       | Third-party API denied the request.                                     |
+| 3033       | Unknown third-party API error.                                          |
+| 3034       | Third-party API returned unhandleable response.                         |
+| 4xxx       | Endpoint-specific error, varies on functional of each one.              |
+
+## Group Account
+
+### OAuth redirect link [GET /account/oauth]
+
+Get generated Microsoft OAuth URL, then redirect user to the URL
+for start authentication on the Microsft OAuth service.
+
++ Response 200 (application/json)
+
+    + body
+    
+            {
+                "success": true,
+                "oauth_url": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize"
+            }
+
+    + Attributes
+    
+        + oauth_url (string)
+        
+            The URL for redirect user to the Microsoft OAuth service. Action afterward may be
+            open popup, push new tab, or anything. It up to you.
+            
+
+### OAuth callback [POST /account/oauth-callback]
+
+After Microsoft OAuth flow has completed, Microsoft will return back
+user's authorization code to frontend.
+After that, frontend forwards the returned `authorization_code`
+to backend for retrieving user information using this endpoint.
+
+
+*Error code returned in case of `success` is `false`.*
+
+| Error code | Description |
+|------------|-------------|
+| 4001       | Invalid OAuth authorization code.                                       |
+| 4002       | Microsoft account is outside of KMUTT (@mail.kmutt.ac.th) organization. |
+| 4003       | Microsoft account is outside of CS whilelist.                           |
+| 4004       | Required OAuth scope is not permitted.                                  |
+
++ Request (application/json)
+
+    + body
+    
+            {
+                "authorization_code": "a997dbe5-eaeb-420f-aa61-359815b5b601"
+            }
+    
+    + Attributes
+    
+        + authorization_code (string)
+        
+            The variable returned from Microsoft OAuth service, after the process completed.
+            
++ Response 200 (application/json)
+
+    + body
+    
+            {
+                "success": true,
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJDUzIyQ09ERUxJTkUiLCJuYW1lIjoiQmh1bWphdGUgU3VkcHJhc2VydCIsImVtYWlsIjoiYmh1bWphdGUuc0BtYWlsLmttdXR0LmFjLnRoIiwiaWF0IjoxNTE2MjM5MDIyfQ.x9Txjd9ePFRbwdXeQSvcGMgYdRW_sIGk1fkPsu1JOoE",
+                "usertype": 1
+            }
+
+    + Attributes
+    
+        + token (string)
+        
+            JSON Web Token generated from the OAuth verification, used for store credential in cookie
+            and use for authentication in further requests.
+            
+        + usertype (number)
+        
+            Number code represent the role of logged in user, mapped as following table:
+            | User type | Description   |
+            |-----------|---------------|
+            | 1         | CS22          |
+            | 2         | CS21, general |
+            | 3         | CS21, admin   |
+
++ Request Error 4001 (application/json)
+
++ Response 200 (application/json)
+
+        {
+            "success": false,
+            "error": 4001,
+            "error_desc": "Invalid OAuth authorization code."
+        }
+
++ Request Error 4002 (application/json)
+        
++ Response 200 (application/json)
+
+        {
+            "success": false,
+            "error": 4002,
+            "error_desc": "Microsoft account is outside of KMUTT (@mail.kmutt.ac.th) organization."
+        }
+        
+        
++ Request Error 4003 (application/json)
+        
++ Response 200 (application/json)
+
+    + body
+    
+            {
+                "success": false,
+                "error": 4003,
+                "error_desc": "Required OAuth scope is not permitted."
+            }
+        
+### Fetch profile [GET /account/profile]
+
+Fetch user's profile and retrieve related information
+
++ Request (application/json)
+
+    + Headers
+
+            Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+
++ Response 200 (application/json)
+
+    + body
+        
+            {
+                "success": true,
+                "profile": {
+                    "avatar": "https://pbs.twimg.com/profile_images/1184715949665996805/MbzndGFr.jpg",
+                    "name": "Bhumjate Sudprasert",
+                    "email": "bhumjate.s@gmail.kmutt.ac.th",
+                    "usertype": 3
+                }
+            }
+        
+    + Attributes
+    
+        + profile (object)
+        
+            A basic profile of a user, no matter what user type it is. Also including user type of a user that currently logged in.
+
+## Group CS21 functional
+
+### Fetch information [GET /cs21/info]
+    
++ Request (application/json)
+    
+    + Headers
+
+            Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "success": true,
+                "info": {
+                    "code": "simplebutpowerful",
+                    "color_name": "Space Grey",
+                    "color_code": "#4f5b66",
+                    "hints": [
+                        "rDNS of 23.234.199.168",
+                        "วิธีเชื่อม youtube tv",
+                        "1dp5clVcAcW2bidPTGhPEv 🔍",
+                        "aka Posit10n",
+                        "ชื่อไม่ได้เขียนว่าทัน"
+                    ]
+                }
+            }
+    
+    + Attributes
+    
+        + info (object)
+        
+            An object that contains `code` and `hints`.
+            
+        + info.code (string)
+        
+            The setted peer mentor commit code.
+
+        + info.hints (array)
+        
+            Array of setted hint, ordered from slot #0 to slot #4.
+            
+### Set commit code [POST /cs21/setcode]
+
+| Error code | Description |
+|------------|-------------|
+| 4001       | Exclusively for CS21 only.                                              |
+| 4002       | The code contains unallowed collation charactor.                        |
+| 4003       | This account has been already registered the code.                      |
+| 4004       | The code is already taken by another one.                               |
+
++ Request (application/json)
+    
+    + Headers
+
+            Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+  
+    + Body
+    
+            {
+                "pair": "simplebutpowerful"
+                "code": "simplebutpowerful"
+            }
+          
+    + Attributes
+                 
+        + code (string)
+        
+            Peer mentor commit code which user want to set.
++ Response 200 (application/json)
+
+        {
+            "success": true
+        }
+             
++ Request Error (application/json)
+    
+    + Headers
+
+            Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+    
++ Response 200 (application/json)
+
+        {
+            "success": "false",
+            "error": 4001,
+            "error_desc": "Exclusively for CS21 only."
+        }
+        
+### Set hints [POST /cs21/sethints]
+
+| Error code | Description |
+|------------|-------------|
+| 4001       | Exclusively for CS21 only.                                              |
+| 4002       | Some of hints contains unallowed collation charactor.                   |
+| 4003       | Hint has previously set. To edit hint, please contact administrator. |
+
++ Request (application/json)
+    
+    + Headers
+
+            Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+            
+    + Body
+    
+            {
+                "hints": [
+                    "Hello world 1",
+                    "Hello world 2",
+                    "Hello world 3",
+                    "Hello world 4",
+                    "Hello world 5"
+                ]
+            }
+       
+    + Attributes
+                 
+        + hints (array)
+        
+            Array size of 5 which contains the hints that user want to set.
+            
++ Response 200 (application/json)
+
+        {
+            "success": true
+        }
+
+## Group CS22 functional
+
+### Fetch information [GET /cs22/info]
+    
++ Request (application/json)
+    
+    + Headers
+
+            Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "success": true,
+                "info": {
+                    "hints": [
+                        "Opened hint #1",
+                        "Opened hint #2",
+                        "Opened hint #3"
+                    ],
+                    "quota_used": 3,
+                    "quota_remaining": 2,
+                    "color_name": "Space Grey",
+                    "color_code": "#4f5b66"
+                }
+            }
+    
+    + Attributes
+    
+        + info (object)
+        
+            An object that contains `hints`, `quota_used` and `remaining_quota`.
+            
+        + info.hints (array)
+        
+            List of opened hints. Starting from firstly openned hint to latest one.
+
+        + info.quota_used (number)
+        
+           Number of checking attempt used.
+           
+        + info.quota_remaining (number)
+        
+           Number of the remaining check attempt quota.
+            
+### Peer mentor pairing [POST /cs22/pair]
+
+This is for first time use, which user need to enter pairing code for pair theirself with peer mentor.
+
+| Error code | Description |
+|------------|-------------|
+| 4001       | Exclusively for CS22 only.                                              |
+| 4002       | User has already paired with peer mentor.                               |
+| 4003       | Incorrect paring code.                                                  |
+| 4004       | The paring code has been previously used.                               |
+
++ Request (application/json)
+    
+    + Headers
+
+            Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+            
+    + body
+    
+            {
+                "pairing_code": "thisisexamplepeermentor"
+            }
+        
+    + Attributes
+    
+        + pairing_code (string)
+        
+            Pairing code for link user with peer mentor.
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "success": true
+            }
+
+### Peer mentor checking [POST /cs22/commit]
+
+| Error code | Description |
+|------------|-------------|
+| 4001       | Exclusively for CS22 only.                                              |
+| 4002       | User has already found a peer mentor.                                   |
+| 4003       | User has ran out of checking attempt quota.                             |
+| 4004       | Commit code has expired or previously used by another one.              |
+| 4005       | Commit code was previously applied, duplicate attempt.                  |
+| 4006       | Commit code not found.                                                  |
+| **4007**   | **Mismatch peer mentor. Checking result goes wrong.\***                 |
+
+*\* Disclaimer: Error 4007 comes with special attribute, view example response below for more information.*
+
++ Request (application/json)
+    
+    + Headers
+
+            Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+            
+    + body
+    
+            {
+                "commit_code": "thisisexamplepeermentor"
+            }
+        
+    + Attributes
+    
+        + commit_code (string)
+        
+            Commit code for checking whether peer mentor is correctly match or not.
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "success": true,
+                "mentor_name": "Bhumjate"
+            }
+
+    + Attributes
+    
+        + success (boolean)
+        
+            Result whether the committed code is match paired peer mentor or not. If it is `true`,
+            meaning that user has found correct peer mentor.
+            
+        + mentor_name (string)
+        
+            Name of 2nd year peer mentor that correctly paired.
+            
++ Request Error 4001 - 4006 (application/json)
+    
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "success": false,
+                "error": 4001,
+                "error_desc": "Exclusively for CS21 only."
+            }
+            
+    + Attributes
+                 
+        + error (number)
+        
+            Error code that mapped to the error code table above.
+            
+        + error_desc (string)
+        
+            Error description, mapped from the error code table.
+    
++ Request Error 4007 (application/json)
+    
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "success": false,
+                "error": 4006,
+                "error_desc": "Wrong commit. Checking result goes mismatch peer mentor.",
+                "quota_used": 3,
+                "quota_remaining": 2
+            }
+            
+    + Attributes
+                 
+        + error (number)
+        
+            Error code that mapped to the error code table above.
+            
+        + error_desc (string)
+        
+            Error descrption, mapped from the error code table.
+            
+        + quota_used (number)
+        
+           Number of checking attempt used.
+           
+        + quota_remaining (number)
+            
+            Number of the remaining checking attempt quota, reduce by 1 per check.
+            
+## Group Administrator functional
+
+### Fetch table [GET /admin/table]
+    
++ Request (application/json)
+    
+    + Headers
+
+            Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "success": true,
+                "table": [
+                    {
+                        "name": "Abac Dedf",
+                        "mentor": "Bhumjate Sudprasert",
+                        "hint_opened": 3,
+                        "hints": [
+                            "Hint #1",
+                            "Hint #2",
+                            "Hint #3",
+                            "Hint #4",
+                            "Hint #5"
+                        ],
+                        "group_id": 12,
+                        "group_name": "Spring"
+                    }
+                ]
+            }
+    
+    + Attributes
+    
+        + table (array)
+        
+            The list of all peer mentors in the system.
+            
+        + table[i] (object)
+        
+            The object of the peer's information.
+            
+        + table[i].name (string)
+        
+            Name of peer mentee.
+
+        + table[i].mentor (string)
+        
+            Name of peer mentor.
+           
+        + table[i].hint_opened (number)
+        
+            Number of opened hint for each peer.
+           
+        + table[i].hints (array)
+        
+            List of all hints available for each peer.
+            
+        + table[i].group_id (string)
+        
+            ID of the co-peer mentor.
+            
+        + table[i].group_name (string)
+        
+            Name of the co-peer mentor.
+            
+            
+            
